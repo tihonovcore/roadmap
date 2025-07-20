@@ -1,5 +1,6 @@
 package com.example.roadmap.ui
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.roadmap.data.DataProvider
@@ -34,8 +36,12 @@ fun ActionPointsContent(actionPoint: ActionPoint) {
             style = MaterialTheme.typography.bodyLarge,
         )
         Spacer(Modifier.weight(1F))
+
+        val context = LocalContext.current
         Button(
-            onClick = {},
+            onClick = {
+                Toast.makeText(context, "Good job!", Toast.LENGTH_SHORT).show()
+            },
             modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp)
         ) {
             Text(text = "I've done it!")

@@ -26,12 +26,15 @@ import com.example.roadmap.model.Roadmap
 import com.example.roadmap.ui.theme.RoadmapTheme
 
 @Composable
-fun RoadmapsList() {
+fun RoadmapsList(
+    onRoadmapSelected: (Roadmap) -> Unit
+) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
         items(DataProvider.roadmaps) { roadmap ->
             Card(
+                onClick = { onRoadmapSelected(roadmap) },
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(8.dp)
@@ -75,6 +78,6 @@ private fun ListItem(
 @Composable
 private fun RoadmapsListPreview() {
     RoadmapTheme(darkTheme = false) {
-        RoadmapsList()
+        RoadmapsList(onRoadmapSelected = {})
     }
 }

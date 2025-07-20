@@ -24,12 +24,17 @@ import com.example.roadmap.ui.theme.RoadmapTheme
 //TODO: кнопка добавить новый
 
 @Composable
-fun ActionPointsList(roadmap: Roadmap) {
+fun ActionPointsList(
+    roadmap: Roadmap,
+    onActionPointSelected: (ActionPoint) -> Unit
+) {
+    //TODO: писать в шапку что выполнено 3/10
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
         items(roadmap.actionPoints) { actionPoint ->
             Card(
+                onClick = { onActionPointSelected(actionPoint) },
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(5.dp)
@@ -49,6 +54,7 @@ private fun ListItem(
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
+            //TODO: галку для выполненных
             Text(
                 text = actionPoint.name,
                 style = MaterialTheme.typography.titleLarge,
@@ -66,7 +72,10 @@ private fun ListItem(
 @Composable
 private fun RoadmapsListPreview() {
     RoadmapTheme(darkTheme = false) {
-        ActionPointsList(DataProvider.roadmaps.first())
+        ActionPointsList(
+            roadmap = DataProvider.roadmaps.first(),
+            onActionPointSelected = {}
+        )
     }
 }
 
