@@ -11,16 +11,17 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.roadmap.R
-import com.example.roadmap.data.DataProvider
-import com.example.roadmap.model.Roadmap
 import com.example.roadmap.ui.theme.RoadmapTheme
 
 enum class RoadmapScreen {
@@ -32,7 +33,13 @@ enum class RoadmapScreen {
 @Composable
 fun RoadmapApp() {
     val navController = rememberNavController()
+    val backStackEntry by navController.currentBackStackEntryAsState()
+    val currentScreen = RoadmapScreen.valueOf(
+        backStackEntry?.destination?.route ?: RoadmapScreen.ListRoadmaps.name
+    )
+
     val viewModel = viewModel<RoadmapViewModel>()
+    val uiState by viewModel.uiState.collectAsState()
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -43,8 +50,8 @@ fun RoadmapApp() {
                     Text(text = "Roadmap")
                 },
                 navigationIcon = {
-                    if (false /*TODO*/) {
-                        IconButton(onClick = { /*TODO*/ }) {
+                    if (currentScreen != RoadmapScreen.ListRoadmaps) {
+                        IconButton(onClick = { navController.navigateUp() }) {
                             Icon(
                                 imageVector = Icons.Filled.ArrowBack,
                                 contentDescription = stringResource(R.string.back_button)
@@ -64,7 +71,7 @@ fun RoadmapApp() {
             composable(route = RoadmapScreen.ListRoadmaps.name) {
                 RoadmapsList(
                     onRoadmapSelected = { roadmap ->
-                        //TODO: save roadmap to viewmodel
+                        viewModel.chooseRoadmap(roadmap)
                         navController.navigate(route = RoadmapScreen.ListActionPoints.name)
                     }
                 )
@@ -72,16 +79,18 @@ fun RoadmapApp() {
 
             composable(route = RoadmapScreen.ListActionPoints.name) {
                 ActionPointsList(
-                    roadmap = DataProvider.roadmaps.first(),
+                    roadmap = uiState.selectedRoadmap!!,
                     onActionPointSelected = { actionPoint ->
-                        //TODO: save actionPoint to viewmodel
+                        viewModel.chooseActionPoint(actionPoint)
                         navController.navigate(route = RoadmapScreen.ActionPointScreen.name)
                     }
                 )
             }
 
             composable(route = RoadmapScreen.ActionPointScreen.name) {
-                ActionPointsContent(actionPoint = DataProvider.roadmaps.first().actionPoints.first())
+                ActionPointsContent(
+                    actionPoint = uiState.selectedActionPoint!!
+                )
             }
         }
     }
