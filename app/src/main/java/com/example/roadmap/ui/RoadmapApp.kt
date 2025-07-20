@@ -1,7 +1,10 @@
 package com.example.roadmap.ui
 
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -16,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -47,7 +51,26 @@ fun RoadmapApp() {
             @OptIn(ExperimentalMaterial3Api::class)
             CenterAlignedTopAppBar(
                 title = {
-                    Text(text = "Roadmap")
+                    when (currentScreen) {
+                        RoadmapScreen.ListRoadmaps -> {
+                            Text(text = stringResource(R.string.roadmap))
+                        }
+                        RoadmapScreen.ListActionPoints -> {
+                            val roadmap = uiState.selectedRoadmap!!
+
+                            val done = roadmap.actionPoints.count { it in uiState.doneActionPoints }
+                            val total = roadmap.actionPoints.size
+
+                            Row {
+                                Text(text = uiState.selectedRoadmap!!.name)
+                                Spacer(Modifier.width(5.dp))
+                                Text(text = "$done/$total")
+                            }
+                        }
+                        RoadmapScreen.ActionPointScreen -> {
+                            Text(text = uiState.selectedActionPoint!!.name)
+                        }
+                    }
                 },
                 navigationIcon = {
                     if (currentScreen != RoadmapScreen.ListRoadmaps) {
@@ -80,6 +103,7 @@ fun RoadmapApp() {
             composable(route = RoadmapScreen.ListActionPoints.name) {
                 ActionPointsList(
                     roadmap = uiState.selectedRoadmap!!,
+                    doneActionPoints = uiState.doneActionPoints,
                     onActionPointSelected = { actionPoint ->
                         viewModel.chooseActionPoint(actionPoint)
                         navController.navigate(route = RoadmapScreen.ActionPointScreen.name)

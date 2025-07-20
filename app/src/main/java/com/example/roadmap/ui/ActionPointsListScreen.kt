@@ -1,7 +1,6 @@
 package com.example.roadmap.ui
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -14,6 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.roadmap.data.DataProvider
@@ -26,9 +26,9 @@ import com.example.roadmap.ui.theme.RoadmapTheme
 @Composable
 fun ActionPointsList(
     roadmap: Roadmap,
+    doneActionPoints: Set<ActionPoint>,
     onActionPointSelected: (ActionPoint) -> Unit
 ) {
-    //TODO: писать в шапку что выполнено 3/10
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -40,7 +40,10 @@ fun ActionPointsList(
                     .padding(5.dp)
                     .heightIn(max = 125.dp)
             ) {
-                ListItem(actionPoint)
+                ListItem(
+                    actionPoint = actionPoint,
+                    isDone = actionPoint in doneActionPoints
+                )
             }
         }
     }
@@ -48,23 +51,25 @@ fun ActionPointsList(
 
 @Composable
 private fun ListItem(
-    actionPoint: ActionPoint
+    actionPoint: ActionPoint, isDone: Boolean
 ) {
-    Row {
-        Column(
-            modifier = Modifier.padding(16.dp)
-        ) {
-            //TODO: галку для выполненных
-            Text(
-                text = actionPoint.name,
-                style = MaterialTheme.typography.titleLarge,
-            )
-            Spacer(Modifier.height(5.dp))
-            Text(
-                text = actionPoint.description,
-                style = MaterialTheme.typography.bodyMedium,
-            )
-        }
+    Column(
+        modifier = Modifier.padding(16.dp)
+    ) {
+
+        Text(
+            text = actionPoint.name,
+            style =
+                if (isDone) MaterialTheme.typography.titleLarge.copy(
+                    textDecoration = TextDecoration.LineThrough
+                )
+                else MaterialTheme.typography.titleLarge
+        )
+        Spacer(Modifier.height(5.dp))
+        Text(
+            text = actionPoint.description,
+            style = MaterialTheme.typography.bodyMedium,
+        )
     }
 }
 
@@ -74,6 +79,7 @@ private fun RoadmapsListPreview() {
     RoadmapTheme(darkTheme = false) {
         ActionPointsList(
             roadmap = DataProvider.roadmaps.first(),
+            doneActionPoints = emptySet(),
             onActionPointSelected = {}
         )
     }
