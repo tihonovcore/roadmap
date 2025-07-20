@@ -34,7 +34,8 @@ import com.example.roadmap.ui.theme.RoadmapTheme
 enum class RoadmapScreen {
     ListRoadmaps,
     ListActionPoints,
-    ActionPointScreen
+    ActionPointScreen,
+    CreateActionPointScreen,
 }
 
 @Composable
@@ -60,6 +61,7 @@ fun RoadmapApp() {
         ) {
             composable(route = RoadmapScreen.ListRoadmaps.name) {
                 RoadmapsList(
+                    roadmaps = uiState.roadmaps,
                     onRoadmapSelected = { roadmap ->
                         viewModel.chooseRoadmap(roadmap)
                         navController.navigate(route = RoadmapScreen.ListActionPoints.name)
@@ -86,6 +88,15 @@ fun RoadmapApp() {
                     isDoneChanged = { viewModel.changeDoneStatus(selectedActionPoint) }
                 )
             }
+
+            composable(route = RoadmapScreen.CreateActionPointScreen.name) {
+                CreateActionPoint(
+                    onCreateActionPoint = { actionPoint ->
+                        viewModel.addActionPointToCurrentRoadmap(actionPoint)
+                        navController.navigateUp()
+                    }
+                )
+            }
         }
     }
 }
@@ -106,7 +117,6 @@ private fun RoadmapTopBar(
                 RoadmapScreen.ListRoadmaps -> {
                     Text(text = stringResource(R.string.roadmap))
                 }
-
                 RoadmapScreen.ListActionPoints -> {
                     val roadmap = uiState.selectedRoadmap!!
 
@@ -114,14 +124,16 @@ private fun RoadmapTopBar(
                     val total = roadmap.actionPoints.size
 
                     Row {
-                        Text(text = uiState.selectedRoadmap!!.name)
+                        Text(text = roadmap.name)
                         Spacer(Modifier.width(5.dp))
                         Text(text = "$done/$total")
                     }
                 }
-
                 RoadmapScreen.ActionPointScreen -> {
                     Text(text = uiState.selectedActionPoint!!.name)
+                }
+                RoadmapScreen.CreateActionPointScreen -> {
+                    Text(text = "Добавление целевого действия")
                 }
             }
         },
@@ -135,14 +147,20 @@ private fun RoadmapTopBar(
                 }
             }
         },
-//        actions = {
-//            IconButton(onClick = onAddClick) {
-//                Icon(
-//                    imageVector = Icons.Default.Add,
-//                    contentDescription = stringResource(R.string.add)
-//                )
-//            }
-//        }
+        actions = {
+            if (currentScreen == RoadmapScreen.ListActionPoints) {
+                IconButton(
+                    onClick = {
+                        navController.navigate(route = RoadmapScreen.CreateActionPointScreen.name)
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = stringResource(R.string.add_action_point)
+                    )
+                }
+            }
+        }
     )
 }
 

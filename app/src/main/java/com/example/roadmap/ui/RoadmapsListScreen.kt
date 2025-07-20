@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -27,12 +26,13 @@ import com.example.roadmap.ui.theme.RoadmapTheme
 
 @Composable
 fun RoadmapsList(
+    roadmaps: List<Roadmap>,
     onRoadmapSelected: (Roadmap) -> Unit
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
-        items(DataProvider.roadmaps) { roadmap ->
+        items(roadmaps) { roadmap ->
             Card(
                 onClick = { onRoadmapSelected(roadmap) },
                 modifier = Modifier
@@ -78,6 +78,9 @@ private fun ListItem(
 @Composable
 private fun RoadmapsListPreview() {
     RoadmapTheme(darkTheme = false) {
-        RoadmapsList(onRoadmapSelected = {})
+        RoadmapsList(
+            roadmaps = DataProvider.roadmaps,
+            onRoadmapSelected = {}
+        )
     }
 }

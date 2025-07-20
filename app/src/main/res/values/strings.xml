@@ -3,5 +3,8 @@
     <string name="back_button">назад</string>
     <string name="roadmap">Roadmap</string>
     <string name="look_at_link">смотреть по ссылке</string>
-    <string name="add">Добавить</string>
+    <string name="add_action_point">Добавить активность</string>
+    <string name="create_action_point">Создать активность</string>
+    <string name="action_point_name">Название активности</string>
+    <string name="action_point_description">Описание действия</string>
 </resources>

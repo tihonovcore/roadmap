@@ -34,4 +34,20 @@ class RoadmapViewModel : ViewModel() {
             }
         }
     }
+
+    fun addActionPointToCurrentRoadmap(actionPoint: ActionPoint) {
+        _uiState.update { old ->
+            val currentRoadmap = old.selectedRoadmap!!
+            val roadmaps = old.roadmaps.toMutableList()
+            val index = roadmaps.indexOf(currentRoadmap)
+            roadmaps[index] = currentRoadmap.copy(
+                actionPoints = currentRoadmap.actionPoints + actionPoint
+            )
+
+            old.copy(
+                selectedRoadmap = roadmaps[index],
+                roadmaps = roadmaps.toList()
+            )
+        }
+    }
 }
