@@ -14,7 +14,8 @@ object DataProvider {
             actionPoints = listOf(
                 ActionPoint(
                     name = "Гугл курс",
-                    description = "Курс по разработке от гугл: https://developer.android.com/courses/android-basics-compose/course"
+                    description = "Курс по разработке от гугл: ",
+                    link = "https://developer.android.com/courses/android-basics-compose/course"
                 ),
                 ActionPoint(
                     name = "Хранение кредов",
@@ -64,7 +65,8 @@ object DataProvider {
             actionPoints = listOf(
                 ActionPoint(
                     name = "Разработка под unity",
-                    description = "Изучить образовательные ресурсы от Unity https://learn.unity.com/pathways"
+                    description = "Изучить образовательные ресурсы от Unity: ",
+                    link = "https://learn.unity.com/pathways"
                 ),
             )
         ),
@@ -101,8 +103,9 @@ object DataProvider {
                     description = "Изучить книжку Programming Quantum Computers"
                 ),
                 ActionPoint(
-                    name = "Создать бот",
-                    description = "Попробовать каты от Microsoft https://quantum.microsoft.com/en-us/tools/quantum-katas"
+                    name = "Каты",
+                    description = "Попробовать каты от Microsoft: ",
+                    link = "https://quantum.microsoft.com/en-us/tools/quantum-katas"
                 ),
             )
         ),

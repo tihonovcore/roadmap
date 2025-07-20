@@ -82,10 +82,10 @@ fun RoadmapApp() {
                         }
                     }
                 }
-
             )
         }
     ) { innerPadding ->
+        //TODO: адаптивная вертска
         NavHost(
             navController = navController,
             startDestination = RoadmapScreen.ListRoadmaps.name,

@@ -21,7 +21,7 @@ import com.example.roadmap.model.ActionPoint
 import com.example.roadmap.model.Roadmap
 import com.example.roadmap.ui.theme.RoadmapTheme
 
-//TODO: кнопка добавить новый
+//TODO: кнопка в шапке добавить новый, переход на новый скрин
 
 @Composable
 fun ActionPointsList(
