@@ -90,5 +90,81 @@ object DataProvider {
                 ),
             )
         ),
+        Roadmap(
+            name = "Фронтенд",
+            description = "Разработка UI для веба",
+            picture = 0, //TODO
+            actionPoints = listOf(
+                ActionPoint(
+                    name = "React",
+                    description = "Найти гайд на сайте реакта и пройти"
+                ),
+            )
+        ),
+        Roadmap(
+            name = "Бэкенд",
+            description = "Разработка серверных приложений",
+            picture = 0, //TODO
+            actionPoints = listOf(
+                ActionPoint(
+                    name = "Свой сайт http",
+                    description = "Поднять свой сайт на Nginx"
+                ),
+                ActionPoint(
+                    name = "Свой сайт https",
+                    description = "Настроить TLS"
+                ),
+            )
+        ),
+        Roadmap(
+            name = "Desktop",
+            description = "Разработка приложений для ПК",
+            picture = 0, //TODO
+            actionPoints = listOf(
+                ActionPoint(
+                    name = "Markdown",
+                    description = "Реализовать редактор Markdown"
+                ),
+                ActionPoint(
+                    name = "Железяки",
+                    description = "Придумать как использовать железо"
+                ),
+            )
+        ),
+        Roadmap(
+            name = "ML",
+            description = "Эксперименты в области машинного обучения",
+            picture = 0, //TODO
+            actionPoints = listOf(
+            )
+        ),
+        Roadmap(
+            name = "Embedded",
+            description = "Разработка для ардуино и прочих холодильников",
+            picture = 0, //TODO
+            actionPoints = listOf(
+            )
+        ),
+        Roadmap(
+            name = "Blockchain",
+            description = "Изучение технологий blockchain",
+            picture = 0, //TODO
+            actionPoints = listOf(
+            )
+        ),
+        Roadmap(
+            name = "Плагин для хрома",
+            description = "Ну плагин и плагин",
+            picture = 0, //TODO
+            actionPoints = listOf(
+            )
+        ),
+        Roadmap(
+            name = "Приложение с ChatGPT",
+            description = "Улучшение приложений за счет интеграции инструментов ChatGPT",
+            picture = 0, //TODO
+            actionPoints = listOf(
+            )
+        )
     )
 }
