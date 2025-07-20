@@ -88,8 +88,11 @@ fun RoadmapApp() {
             }
 
             composable(route = RoadmapScreen.ActionPointScreen.name) {
+                val selectedActionPoint = uiState.selectedActionPoint!!
                 ActionPointsContent(
-                    actionPoint = uiState.selectedActionPoint!!
+                    actionPoint = selectedActionPoint,
+                    isActionPointDone = selectedActionPoint in uiState.doneActionPoints,
+                    isDoneChanged = { viewModel.changeDoneStatus(selectedActionPoint) }
                 )
             }
         }

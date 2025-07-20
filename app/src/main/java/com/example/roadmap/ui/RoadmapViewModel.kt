@@ -25,4 +25,13 @@ class RoadmapViewModel : ViewModel() {
         }
     }
 
+    fun changeDoneStatus(selectedActionPoint: ActionPoint) {
+        _uiState.update { old ->
+            if (selectedActionPoint in old.doneActionPoints) {
+                old.copy(doneActionPoints = old.doneActionPoints - selectedActionPoint)
+            } else {
+                old.copy(doneActionPoints = old.doneActionPoints + selectedActionPoint)
+            }
+        }
+    }
 }

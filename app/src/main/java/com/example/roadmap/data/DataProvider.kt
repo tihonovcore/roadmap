@@ -29,19 +29,19 @@ object DataProvider {
                     description = "Получить из приложения доступ к датчикам, камере, файлам"
                 ),
                 ActionPoint(
-                    name = "Lorem Ipsum",
+                    name = "Lorem Ipsum 1",
                     description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet sollicitudin urna. Aliquam commodo luctus interdum. Sed in interdum enim, quis aliquet sem. Sed semper dapibus massa, eu lobortis arcu auctor ut. Mauris varius dui a congue ullamcorper. Fusce in varius nisl, non facilisis est."
                 ),
                 ActionPoint(
-                    name = "Lorem Ipsum",
+                    name = "Lorem Ipsum 2",
                     description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet sollicitudin urna. Aliquam commodo luctus interdum. Sed in interdum enim, quis aliquet sem. Sed semper dapibus massa, eu lobortis arcu auctor ut. Mauris varius dui a congue ullamcorper. Fusce in varius nisl, non facilisis est."
                 ),
                 ActionPoint(
-                    name = "Lorem Ipsum",
+                    name = "Lorem Ipsum 3",
                     description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet sollicitudin urna. Aliquam commodo luctus interdum. Sed in interdum enim, quis aliquet sem. Sed semper dapibus massa, eu lobortis arcu auctor ut. Mauris varius dui a congue ullamcorper. Fusce in varius nisl, non facilisis est."
                 ),
                 ActionPoint(
-                    name = "Lorem Ipsum",
+                    name = "Lorem Ipsum 4",
                     description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet sollicitudin urna. Aliquam commodo luctus interdum. Sed in interdum enim, quis aliquet sem. Sed semper dapibus massa, eu lobortis arcu auctor ut. Mauris varius dui a congue ullamcorper. Fusce in varius nisl, non facilisis est."
                 ),
             )

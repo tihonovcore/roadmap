@@ -1,6 +1,5 @@
 package com.example.roadmap.ui
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,10 +8,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.roadmap.data.DataProvider
@@ -20,7 +19,11 @@ import com.example.roadmap.model.ActionPoint
 import com.example.roadmap.ui.theme.RoadmapTheme
 
 @Composable
-fun ActionPointsContent(actionPoint: ActionPoint) {
+fun ActionPointsContent(
+    actionPoint: ActionPoint,
+    isActionPointDone: Boolean,
+    isDoneChanged: () -> Unit
+) {
     Column(
         modifier = Modifier
             .padding(16.dp)
@@ -37,14 +40,20 @@ fun ActionPointsContent(actionPoint: ActionPoint) {
         )
         Spacer(Modifier.weight(1F))
 
-        val context = LocalContext.current
-        Button(
-            onClick = {
-                Toast.makeText(context, "Good job!", Toast.LENGTH_SHORT).show()
-            },
-            modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp)
-        ) {
-            Text(text = "I've done it!")
+        if (isActionPointDone) {
+            OutlinedButton(
+                onClick = isDoneChanged,
+                modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp),
+            ) {
+                Text(text = "Mark as undone")
+            }
+        } else {
+            Button(
+                onClick = isDoneChanged,
+                modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp),
+            ) {
+                Text(text = "I've done it!")
+            }
         }
     }
 }
@@ -53,6 +62,10 @@ fun ActionPointsContent(actionPoint: ActionPoint) {
 @Composable
 private fun RoadmapsListPreview() {
     RoadmapTheme(darkTheme = true) {
-        ActionPointsContent(DataProvider.roadmaps.first().actionPoints.first())
+        ActionPointsContent(
+            actionPoint = DataProvider.roadmaps.first().actionPoints.first(),
+            isActionPointDone = true,
+            isDoneChanged = {}
+        )
     }
 }
