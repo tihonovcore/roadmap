@@ -37,12 +37,6 @@ fun ActionPointsContent(
             .padding(16.dp)
             .fillMaxSize(),
     ) {
-        Text(
-            text = actionPoint.name,
-            style = MaterialTheme.typography.displayMedium,
-        )
-        Spacer(Modifier.height(10.dp))
-
         if (actionPoint.link != null) {
             Text(text = buildAnnotatedString {
                 append(actionPoint.description)
