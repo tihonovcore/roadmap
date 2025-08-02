@@ -46,7 +46,7 @@ fun CreateActionPoint(
             } else if (description.isBlank()) {
                 Toast.makeText(context, "Заполните описание", Toast.LENGTH_SHORT).show()
             } else {
-                onCreateActionPoint(ActionPoint(name, description))
+                onCreateActionPoint(ActionPoint(0, name, description))
             }
         }
 
