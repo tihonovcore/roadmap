@@ -6,9 +6,11 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.roadmap.RoadmapApplication
+import com.example.roadmap.data.RoadmapDao
 import com.example.roadmap.model.ActionPoint
 import com.example.roadmap.model.Roadmap
 import com.example.roadmap.model.RoadmapState
+import com.example.roadmap.model.toEntity
 import com.example.roadmap.network.GithubService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,7 +18,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class RoadmapViewModel(
-    private val githubService: GithubService
+    private val githubService: GithubService,
+    private val roadmapDao: RoadmapDao,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(RoadmapState())
@@ -26,6 +29,15 @@ class RoadmapViewModel(
     init {
         viewModelScope.launch {
             val roadmaps = githubService.getRoadmaps()
+
+            roadmapDao.insertRoadmaps(roadmaps.map { it.toEntity() })
+            roadmapDao.insertActionPoints(
+                roadmaps.flatMap { roadmap ->
+                    roadmap.actionPoints.map { it.toEntity(roadmap.id) }
+                }
+            )
+
+            //TODO: remove
             _uiState.update { old ->
                 old.copy(roadmaps = roadmaps)
             }
@@ -74,7 +86,10 @@ class RoadmapViewModel(
         val Factory = viewModelFactory {
             initializer {
                 val application = this[APPLICATION_KEY] as RoadmapApplication
-                RoadmapViewModel(application.githubService)
+                RoadmapViewModel(
+                    githubService = application.githubService,
+                    roadmapDao = application.roadmapDatabase.createDao()
+                )
             }
         }
     }
