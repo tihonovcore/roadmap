@@ -6,35 +6,43 @@
     "picture": "",
     "actionPoints": [
       {
+        "id": 0,
         "name": "Гугл курс",
         "description": "Курс по разработке от гугл: ",
         "link": "https://developer.android.com/courses/android-basics-compose/course"
       },
       {
+        "id": 1,
         "name": "Хранение кредов",
         "description": "Научиться хранить чувствительную информацию в безопасном локальном хранилище"
       },
       {
+        "id": 2,
         "name": "Отправка пушей",
         "description": "Научиться отправлять пуши на телефон"
       },
       {
+        "id": 3,
         "name": "Доступ к железу",
         "description": "Получить из приложения доступ к датчикам, камере, файлам"
       },
       {
+        "id": 4,
         "name": "Lorem Ipsum 1",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet sollicitudin urna. Aliquam commodo luctus interdum. Sed in interdum enim, quis aliquet sem. Sed semper dapibus massa, eu lobortis arcu auctor ut. Mauris varius dui a congue ullamcorper. Fusce in varius nisl, non facilisis est."
       },
       {
+        "id": 5,
         "name": "Lorem Ipsum 2",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet sollicitudin urna. Aliquam commodo luctus interdum. Sed in interdum enim, quis aliquet sem. Sed semper dapibus massa, eu lobortis arcu auctor ut. Mauris varius dui a congue ullamcorper. Fusce in varius nisl, non facilisis est."
       },
       {
+        "id": 6,
         "name": "Lorem Ipsum 3",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet sollicitudin urna. Aliquam commodo luctus interdum. Sed in interdum enim, quis aliquet sem. Sed semper dapibus massa, eu lobortis arcu auctor ut. Mauris varius dui a congue ullamcorper. Fusce in varius nisl, non facilisis est."
       },
       {
+        "id": 7,
         "name": "Lorem Ipsum 4",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet sollicitudin urna. Aliquam commodo luctus interdum. Sed in interdum enim, quis aliquet sem. Sed semper dapibus massa, eu lobortis arcu auctor ut. Mauris varius dui a congue ullamcorper. Fusce in varius nisl, non facilisis est."
       }
@@ -47,6 +55,7 @@
     "picture": "",
     "actionPoints": [
       {
+        "id": 0,
         "name": "Создать бот",
         "description": "Найти обучающие ресурсы"
       }
@@ -59,6 +68,7 @@
     "picture": "",
     "actionPoints": [
       {
+        "id": 0,
         "name": "Разработка под unity",
         "description": "Изучить образовательные ресурсы от Unity: ",
         "link": "https://learn.unity.com/pathways"
@@ -72,18 +82,22 @@
     "picture": "",
     "actionPoints": [
       {
+        "id": 0,
         "name": "Своя ОС",
         "description": "Создать свою мини-ОС"
       },
       {
+        "id": 1,
         "name": "Свой планировщик",
         "description": "Разработать планировщик процессов для игрушечной ОС"
       },
       {
+        "id": 2,
         "name": "Своя файловая система",
         "description": "Разработать файловую систему для игрушечной ОС"
       },
       {
+        "id": 3,
         "name": "Модификация Linux",
         "description": "Сделать форк линукса, внести минимальные правки и собрать"
       }
@@ -96,10 +110,12 @@
     "picture": "",
     "actionPoints": [
       {
+        "id": 0,
         "name": "Изучить книжку",
         "description": "Изучить книжку Programming Quantum Computers"
       },
       {
+        "id": 1,
         "name": "Каты",
         "description": "Попробовать каты от Microsoft: ",
         "link": "https://quantum.microsoft.com/en-us/tools/quantum-katas"
@@ -113,6 +129,7 @@
     "picture": "",
     "actionPoints": [
       {
+        "id": 0,
         "name": "React",
         "description": "Найти гайд на сайте реакта и пройти"
       }
@@ -125,10 +142,12 @@
     "picture": "",
     "actionPoints": [
       {
+        "id": 0,
         "name": "Свой сайт http",
         "description": "Поднять свой сайт на Nginx"
       },
       {
+        "id": 1,
         "name": "Свой сайт https",
         "description": "Настроить TLS"
       }
@@ -141,10 +160,12 @@
     "picture": "",
     "actionPoints": [
       {
+        "id": 0,
         "name": "Markdown",
         "description": "Реализовать редактор Markdown"
       },
       {
+        "id": 1,
         "name": "Железяки",
         "description": "Придумать как использовать железо"
       }
@@ -155,8 +176,7 @@
     "name": "ML",
     "description": "Эксперименты в области машинного обучения",
     "picture": "",
-    "actionPoints": [
-    ]
+    "actionPoints": []
   },
   {
     "id": 9,
