@@ -1,14 +1,21 @@
 package com.example.roadmap.ui
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.roadmap.RoadmapApplication
 import com.example.roadmap.model.ActionPoint
 import com.example.roadmap.model.Roadmap
 import com.example.roadmap.model.RoadmapState
+import com.example.roadmap.network.GithubService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class RoadmapViewModel : ViewModel() {
+class RoadmapViewModel(
+    private val githubService: GithubService
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow(RoadmapState())
     val uiState = _uiState.asStateFlow()
@@ -48,6 +55,15 @@ class RoadmapViewModel : ViewModel() {
                 selectedRoadmap = roadmaps[index],
                 roadmaps = roadmaps.toList()
             )
+        }
+    }
+
+    companion object {
+        val Factory = viewModelFactory {
+            initializer {
+                val application = this[APPLICATION_KEY] as RoadmapApplication
+                RoadmapViewModel(application.githubService)
+            }
         }
     }
 }

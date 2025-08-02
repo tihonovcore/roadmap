@@ -52,6 +52,10 @@ dependencies {
     implementation(libs.androidx.ui.text.google.fonts)
     implementation(libs.androidx.navigation.compose)
 
+    //rest
+    implementation(libs.retrofit)
+    implementation(libs.converter.scalars)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

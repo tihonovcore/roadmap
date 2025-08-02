@@ -41,7 +41,7 @@ enum class RoadmapScreen {
 @Composable
 fun RoadmapApp() {
     val navController = rememberNavController()
-    val viewModel = viewModel<RoadmapViewModel>()
+    val viewModel = viewModel<RoadmapViewModel>(factory = RoadmapViewModel.Factory)
     val uiState by viewModel.uiState.collectAsState()
 
     Scaffold(
@@ -53,7 +53,6 @@ fun RoadmapApp() {
             )
         }
     ) { innerPadding ->
-        //TODO: адаптивная вертска
         NavHost(
             navController = navController,
             startDestination = RoadmapScreen.ListRoadmaps.name,
