@@ -1,0 +1,176 @@
+[
+  {
+    "name": "Android",
+    "description": "Разработка мобильных приложений",
+    "picture": "",
+    "actionPoints": [
+      {
+        "name": "Гугл курс",
+        "description": "Курс по разработке от гугл: ",
+        "link": "https://developer.android.com/courses/android-basics-compose/course"
+      },
+      {
+        "name": "Хранение кредов",
+        "description": "Научиться хранить чувствительную информацию в безопасном локальном хранилище"
+      },
+      {
+        "name": "Отправка пушей",
+        "description": "Научиться отправлять пуши на телефон"
+      },
+      {
+        "name": "Доступ к железу",
+        "description": "Получить из приложения доступ к датчикам, камере, файлам"
+      },
+      {
+        "name": "Lorem Ipsum 1",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet sollicitudin urna. Aliquam commodo luctus interdum. Sed in interdum enim, quis aliquet sem. Sed semper dapibus massa, eu lobortis arcu auctor ut. Mauris varius dui a congue ullamcorper. Fusce in varius nisl, non facilisis est."
+      },
+      {
+        "name": "Lorem Ipsum 2",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet sollicitudin urna. Aliquam commodo luctus interdum. Sed in interdum enim, quis aliquet sem. Sed semper dapibus massa, eu lobortis arcu auctor ut. Mauris varius dui a congue ullamcorper. Fusce in varius nisl, non facilisis est."
+      },
+      {
+        "name": "Lorem Ipsum 3",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet sollicitudin urna. Aliquam commodo luctus interdum. Sed in interdum enim, quis aliquet sem. Sed semper dapibus massa, eu lobortis arcu auctor ut. Mauris varius dui a congue ullamcorper. Fusce in varius nisl, non facilisis est."
+      },
+      {
+        "name": "Lorem Ipsum 4",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet sollicitudin urna. Aliquam commodo luctus interdum. Sed in interdum enim, quis aliquet sem. Sed semper dapibus massa, eu lobortis arcu auctor ut. Mauris varius dui a congue ullamcorper. Fusce in varius nisl, non facilisis est."
+      }
+    ]
+  },
+  {
+    "name": "Телеграм бот",
+    "description": "Создание ботов для телеграма",
+    "picture": "",
+    "actionPoints": [
+      {
+        "name": "Создать бот",
+        "description": "Найти обучающие ресурсы"
+      }
+    ]
+  },
+  {
+    "name": "Gamedev",
+    "description": "Научиться делать компьютерные игры",
+    "picture": "",
+    "actionPoints": [
+      {
+        "name": "Разработка под unity",
+        "description": "Изучить образовательные ресурсы от Unity: ",
+        "link": "https://learn.unity.com/pathways"
+      }
+    ]
+  },
+  {
+    "name": "Операционные системы",
+    "description": "Изучать как все работает на низком уровне",
+    "picture": "",
+    "actionPoints": [
+      {
+        "name": "Своя ОС",
+        "description": "Создать свою мини-ОС"
+      },
+      {
+        "name": "Свой планировщик",
+        "description": "Разработать планировщик процессов для игрушечной ОС"
+      },
+      {
+        "name": "Своя файловая система",
+        "description": "Разработать файловую систему для игрушечной ОС"
+      },
+      {
+        "name": "Модификация Linux",
+        "description": "Сделать форк линукса, внести минимальные правки и собрать"
+      }
+    ]
+  },
+  {
+    "name": "Quantum computing",
+    "description": "Познакомиться с областью квантовых вычислений",
+    "picture": "",
+    "actionPoints": [
+      {
+        "name": "Изучить книжку",
+        "description": "Изучить книжку Programming Quantum Computers"
+      },
+      {
+        "name": "Каты",
+        "description": "Попробовать каты от Microsoft: ",
+        "link": "https://quantum.microsoft.com/en-us/tools/quantum-katas"
+      }
+    ]
+  },
+  {
+    "name": "Фронтенд",
+    "description": "Разработка UI для веба",
+    "picture": "",
+    "actionPoints": [
+      {
+        "name": "React",
+        "description": "Найти гайд на сайте реакта и пройти"
+      }
+    ]
+  },
+  {
+    "name": "Бэкенд",
+    "description": "Разработка серверных приложений",
+    "picture": "",
+    "actionPoints": [
+      {
+        "name": "Свой сайт http",
+        "description": "Поднять свой сайт на Nginx"
+      },
+      {
+        "name": "Свой сайт https",
+        "description": "Настроить TLS"
+      }
+    ]
+  },
+  {
+    "name": "Desktop",
+    "description": "Разработка приложений для ПК",
+    "picture": "",
+    "actionPoints": [
+      {
+        "name": "Markdown",
+        "description": "Реализовать редактор Markdown"
+      },
+      {
+        "name": "Железяки",
+        "description": "Придумать как использовать железо"
+      }
+    ]
+  },
+  {
+    "name": "ML",
+    "description": "Эксперименты в области машинного обучения",
+    "picture": "",
+    "actionPoints": [
+    ]
+  },
+  {
+    "name": "Embedded",
+    "description": "Разработка для ардуино и прочих холодильников",
+    "picture": "",
+    "actionPoints": []
+  },
+  {
+    "name": "Blockchain",
+    "description": "Изучение технологий blockchain",
+    "picture": "",
+    "actionPoints": []
+  },
+  {
+    "name": "Плагин для хрома",
+    "description": "Ну плагин и плагин",
+    "picture": "",
+    "actionPoints": []
+  },
+  {
+    "name": "Приложение с ChatGPT",
+    "description": "Улучшение приложений за счет интеграции инструментов ChatGPT",
+    "picture": "",
+    "actionPoints": []
+  }
+]
