@@ -23,6 +23,6 @@ interface RoadmapDao {
     @Query("SELECT * FROM action_points")
     fun getActionPoints(): Flow<List<ActionPointEntity>>
 
-//    @Insert
-//    suspend fun insertActionPoint(actionPoint: ActionPointEntity)
+    @Insert
+    suspend fun insertActionPoint(actionPoint: ActionPointEntity)
 }

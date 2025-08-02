@@ -25,12 +25,11 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.roadmap.R
-import com.example.roadmap.model.ActionPoint
 import com.example.roadmap.ui.theme.RoadmapTheme
 
 @Composable
 fun CreateActionPoint(
-    onCreateActionPoint: (ActionPoint) -> Unit
+    onCreateActionPoint: (String, String) -> Unit
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -46,7 +45,7 @@ fun CreateActionPoint(
             } else if (description.isBlank()) {
                 Toast.makeText(context, "Заполните описание", Toast.LENGTH_SHORT).show()
             } else {
-                onCreateActionPoint(ActionPoint(0, name, description))
+                onCreateActionPoint(name, description)
             }
         }
 
@@ -93,7 +92,7 @@ fun CreateActionPoint(
 private fun RoadmapsListPreview() {
     RoadmapTheme(darkTheme = true) {
         CreateActionPoint(
-            onCreateActionPoint = {}
+            onCreateActionPoint = { _, _ -> }
         )
     }
 }

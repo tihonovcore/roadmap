@@ -94,8 +94,8 @@ fun RoadmapApp() {
 
             composable(route = RoadmapScreen.CreateActionPointScreen.name) {
                 CreateActionPoint(
-                    onCreateActionPoint = { actionPoint ->
-                        viewModel.addActionPointToCurrentRoadmap(actionPoint)
+                    onCreateActionPoint = { name, description ->
+                        viewModel.addActionPointToCurrentRoadmap(name, description)
                         navController.navigateUp()
                     }
                 )

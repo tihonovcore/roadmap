@@ -6,6 +6,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.roadmap.data.ActionPointStatusRepository
+import com.example.roadmap.data.CustomActionPointIdsRepository
 import com.example.roadmap.data.RoadmapDatabase
 import com.example.roadmap.network.GithubService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -21,17 +22,19 @@ class RoadmapApplication : Application() {
         .build()
 
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
-        name = "done_action_points"
+        name = "action_points_info"
     )
 
     lateinit var githubService: GithubService
     lateinit var roadmapDatabase: RoadmapDatabase
     lateinit var actionPointStatusRepository: ActionPointStatusRepository
+    lateinit var customActionPointIdsRepository: CustomActionPointIdsRepository
 
     override fun onCreate() {
         super.onCreate()
         githubService = retrofit.create(GithubService::class.java)
         roadmapDatabase = RoadmapDatabase.getDatabase(this)
         actionPointStatusRepository = ActionPointStatusRepository(dataStore)
+        customActionPointIdsRepository = CustomActionPointIdsRepository(dataStore)
     }
 }

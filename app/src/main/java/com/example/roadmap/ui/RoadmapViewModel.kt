@@ -7,6 +7,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.roadmap.RoadmapApplication
 import com.example.roadmap.data.ActionPointStatusRepository
+import com.example.roadmap.data.CustomActionPointIdsRepository
 import com.example.roadmap.data.RoadmapDao
 import com.example.roadmap.model.ActionPoint
 import com.example.roadmap.model.Roadmap
@@ -26,6 +27,7 @@ class RoadmapViewModel(
     private val githubService: GithubService,
     private val roadmapDao: RoadmapDao,
     private val actionPointStatusRepository: ActionPointStatusRepository,
+    private val customActionPointIdsRepository: CustomActionPointIdsRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(RoadmapState())
@@ -64,11 +66,6 @@ class RoadmapViewModel(
                     roadmap.actionPoints.map { it.toEntity(roadmap.id) }
                 }
             )
-
-            //TODO: remove
-            _uiState.update { old ->
-                old.copy(roadmaps = roadmaps)
-            }
         }
     }
 
@@ -90,19 +87,13 @@ class RoadmapViewModel(
         }
     }
 
-    fun addActionPointToCurrentRoadmap(actionPoint: ActionPoint) {
-        _uiState.update { old ->
-            val currentRoadmap = old.selectedRoadmap!!
-            val roadmaps = old.roadmaps.toMutableList()
-            val index = roadmaps.indexOf(currentRoadmap)
-            roadmaps[index] = currentRoadmap.copy(
-                actionPoints = currentRoadmap.actionPoints + actionPoint
-            )
+    fun addActionPointToCurrentRoadmap(name: String, description: String) {
+        viewModelScope.launch {
+            val id = customActionPointIdsRepository.generateId()
+            val actionPoint = ActionPoint(id = id, name = name, description = description)
+            val currentRoadmap = _uiState.value.selectedRoadmap!!
 
-            old.copy(
-                selectedRoadmap = roadmaps[index],
-                roadmaps = roadmaps.toList()
-            )
+            roadmapDao.insertActionPoint(actionPoint.toEntity(currentRoadmap.id))
         }
     }
 
@@ -114,6 +105,7 @@ class RoadmapViewModel(
                     githubService = application.githubService,
                     roadmapDao = application.roadmapDatabase.createDao(),
                     actionPointStatusRepository = application.actionPointStatusRepository,
+                    customActionPointIdsRepository = application.customActionPointIdsRepository
                 )
             }
         }
