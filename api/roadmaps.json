@@ -1,5 +1,6 @@
 [
   {
+    "id": 0,
     "name": "Android",
     "description": "Разработка мобильных приложений",
     "picture": "",
@@ -40,6 +41,7 @@
     ]
   },
   {
+    "id": 1,
     "name": "Телеграм бот",
     "description": "Создание ботов для телеграма",
     "picture": "",
@@ -51,6 +53,7 @@
     ]
   },
   {
+    "id": 2,
     "name": "Gamedev",
     "description": "Научиться делать компьютерные игры",
     "picture": "",
@@ -63,6 +66,7 @@
     ]
   },
   {
+    "id": 3,
     "name": "Операционные системы",
     "description": "Изучать как все работает на низком уровне",
     "picture": "",
@@ -86,6 +90,7 @@
     ]
   },
   {
+    "id": 4,
     "name": "Quantum computing",
     "description": "Познакомиться с областью квантовых вычислений",
     "picture": "",
@@ -102,6 +107,7 @@
     ]
   },
   {
+    "id": 5,
     "name": "Фронтенд",
     "description": "Разработка UI для веба",
     "picture": "",
@@ -113,6 +119,7 @@
     ]
   },
   {
+    "id": 6,
     "name": "Бэкенд",
     "description": "Разработка серверных приложений",
     "picture": "",
@@ -128,6 +135,7 @@
     ]
   },
   {
+    "id": 7,
     "name": "Desktop",
     "description": "Разработка приложений для ПК",
     "picture": "",
@@ -143,6 +151,7 @@
     ]
   },
   {
+    "id": 8,
     "name": "ML",
     "description": "Эксперименты в области машинного обучения",
     "picture": "",
@@ -150,24 +159,28 @@
     ]
   },
   {
+    "id": 9,
     "name": "Embedded",
     "description": "Разработка для ардуино и прочих холодильников",
     "picture": "",
     "actionPoints": []
   },
   {
+    "id": 10,
     "name": "Blockchain",
     "description": "Изучение технологий blockchain",
     "picture": "",
     "actionPoints": []
   },
   {
+    "id": 11,
     "name": "Плагин для хрома",
     "description": "Ну плагин и плагин",
     "picture": "",
     "actionPoints": []
   },
   {
+    "id":  12,
     "name": "Приложение с ChatGPT",
     "description": "Улучшение приложений за счет интеграции инструментов ChatGPT",
     "picture": "",

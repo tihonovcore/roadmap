@@ -76,6 +76,7 @@ private fun ListItem(
 @Composable
 private fun RoadmapsListPreview() {
     val roadmap = Roadmap(
+        id = 0,
         name = "Android",
         description = "Разработка мобильных приложений",
         picture = "",

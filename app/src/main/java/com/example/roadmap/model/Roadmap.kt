@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Roadmap(
+    val id: Int,
     val name: String,
     val description: String,
     val picture: String,

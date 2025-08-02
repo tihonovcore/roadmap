@@ -78,25 +78,25 @@ private fun ListItem(
 private fun RoadmapsListPreview() {
     val roadmaps = listOf(
         Roadmap(
+            id = 0,
             name = "Blockchain",
             description = "Изучение технологий blockchain",
             picture = "",
-            actionPoints = listOf(
-            )
+            actionPoints = listOf()
         ),
         Roadmap(
+            id = 1,
             name = "Плагин для хрома",
             description = "Ну плагин и плагин",
             picture = "",
-            actionPoints = listOf(
-            )
+            actionPoints = listOf()
         ),
         Roadmap(
+            id = 2,
             name = "Приложение с ChatGPT",
             description = "Улучшение приложений за счет интеграции инструментов ChatGPT",
             picture = "",
-            actionPoints = listOf(
-            )
+            actionPoints = listOf()
         )
     )
 
