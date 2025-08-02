@@ -2,6 +2,7 @@ package com.example.roadmap.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.roadmap.RoadmapApplication
@@ -12,6 +13,7 @@ import com.example.roadmap.network.GithubService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class RoadmapViewModel(
     private val githubService: GithubService
@@ -19,6 +21,16 @@ class RoadmapViewModel(
 
     private val _uiState = MutableStateFlow(RoadmapState())
     val uiState = _uiState.asStateFlow()
+
+    //TODO: loading/success/fail
+    init {
+        viewModelScope.launch {
+            val roadmaps = githubService.getRoadmaps()
+            _uiState.update { old ->
+                old.copy(roadmaps = roadmaps)
+            }
+        }
+    }
 
     fun chooseRoadmap(roadmap: Roadmap) {
         _uiState.update { old ->
