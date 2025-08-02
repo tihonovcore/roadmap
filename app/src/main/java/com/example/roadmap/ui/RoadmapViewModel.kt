@@ -6,24 +6,35 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.roadmap.RoadmapApplication
+import com.example.roadmap.data.ActionPointStatusRepository
 import com.example.roadmap.data.RoadmapDao
 import com.example.roadmap.model.ActionPoint
+import com.example.roadmap.data.model.ActionPointEntity
 import com.example.roadmap.model.Roadmap
 import com.example.roadmap.model.RoadmapState
 import com.example.roadmap.model.toEntity
 import com.example.roadmap.network.GithubService
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class RoadmapViewModel(
     private val githubService: GithubService,
     private val roadmapDao: RoadmapDao,
+    private val actionPointStatusRepository: ActionPointStatusRepository,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(RoadmapState())
     val uiState = _uiState.asStateFlow()
+
+    val finishedActionIdsState = actionPointStatusRepository.finishedActionIds().stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+        initialValue = emptySet()
+    )
 
     //TODO: loading/success/fail
     init {
@@ -57,12 +68,8 @@ class RoadmapViewModel(
     }
 
     fun changeDoneStatus(selectedActionPoint: ActionPoint) {
-        _uiState.update { old ->
-            if (selectedActionPoint in old.doneActionPoints) {
-                old.copy(doneActionPoints = old.doneActionPoints - selectedActionPoint)
-            } else {
-                old.copy(doneActionPoints = old.doneActionPoints + selectedActionPoint)
-            }
+        viewModelScope.launch {
+            actionPointStatusRepository.changeDoneStatusFor(selectedActionPoint)
         }
     }
 
@@ -88,7 +95,8 @@ class RoadmapViewModel(
                 val application = this[APPLICATION_KEY] as RoadmapApplication
                 RoadmapViewModel(
                     githubService = application.githubService,
-                    roadmapDao = application.roadmapDatabase.createDao()
+                    roadmapDao = application.roadmapDatabase.createDao(),
+                    actionPointStatusRepository = application.actionPointStatusRepository,
                 )
             }
         }

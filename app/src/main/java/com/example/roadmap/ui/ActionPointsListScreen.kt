@@ -25,7 +25,7 @@ import com.example.roadmap.ui.theme.RoadmapTheme
 @Composable
 fun ActionPointsList(
     roadmap: Roadmap,
-    doneActionPoints: Set<ActionPoint>,
+    finishedActionIds: Set<Int>,
     onActionPointSelected: (ActionPoint) -> Unit
 ) {
     LazyColumn(
@@ -41,7 +41,7 @@ fun ActionPointsList(
             ) {
                 ListItem(
                     actionPoint = actionPoint,
-                    isDone = actionPoint in doneActionPoints
+                    isDone = actionPoint.id in finishedActionIds
                 )
             }
         }
@@ -103,7 +103,7 @@ private fun RoadmapsListPreview() {
     RoadmapTheme(darkTheme = false) {
         ActionPointsList(
             roadmap = roadmap,
-            doneActionPoints = emptySet(),
+            finishedActionIds = emptySet(),
             onActionPointSelected = {}
         )
     }

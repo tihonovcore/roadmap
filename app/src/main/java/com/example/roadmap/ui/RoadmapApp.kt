@@ -43,13 +43,15 @@ fun RoadmapApp() {
     val navController = rememberNavController()
     val viewModel = viewModel<RoadmapViewModel>(factory = RoadmapViewModel.Factory)
     val uiState by viewModel.uiState.collectAsState()
+    val finishedActionIds by viewModel.finishedActionIdsState.collectAsState()
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             RoadmapTopBar(
                 navController = navController,
-                uiState = uiState
+                uiState = uiState,
+                finishedActionIds = finishedActionIds,
             )
         }
     ) { innerPadding ->
@@ -71,7 +73,7 @@ fun RoadmapApp() {
             composable(route = RoadmapScreen.ListActionPoints.name) {
                 ActionPointsList(
                     roadmap = uiState.selectedRoadmap!!,
-                    doneActionPoints = uiState.doneActionPoints,
+                    finishedActionIds = finishedActionIds,
                     onActionPointSelected = { actionPoint ->
                         viewModel.chooseActionPoint(actionPoint)
                         navController.navigate(route = RoadmapScreen.ActionPointScreen.name)
@@ -83,7 +85,7 @@ fun RoadmapApp() {
                 val selectedActionPoint = uiState.selectedActionPoint!!
                 ActionPointsContent(
                     actionPoint = selectedActionPoint,
-                    isActionPointDone = selectedActionPoint in uiState.doneActionPoints,
+                    isActionPointDone = selectedActionPoint.id in finishedActionIds,
                     isDoneChanged = { viewModel.changeDoneStatus(selectedActionPoint) }
                 )
             }
@@ -102,7 +104,7 @@ fun RoadmapApp() {
 
 @Composable
 private fun RoadmapTopBar(
-    navController: NavController, uiState: RoadmapState
+    navController: NavController, uiState: RoadmapState, finishedActionIds: Set<Int>
 ) {
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentScreen = RoadmapScreen.valueOf(
@@ -119,7 +121,7 @@ private fun RoadmapTopBar(
                 RoadmapScreen.ListActionPoints -> {
                     val roadmap = uiState.selectedRoadmap!!
 
-                    val done = roadmap.actionPoints.count { it in uiState.doneActionPoints }
+                    val done = roadmap.actionPoints.count { it.id in finishedActionIds }
                     val total = roadmap.actionPoints.size
 
                     Row {
