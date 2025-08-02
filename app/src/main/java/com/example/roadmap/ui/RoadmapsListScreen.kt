@@ -20,7 +20,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.roadmap.R
-import com.example.roadmap.data.DataProvider
 import com.example.roadmap.model.Roadmap
 import com.example.roadmap.ui.theme.RoadmapTheme
 
@@ -77,9 +76,33 @@ private fun ListItem(
 @Preview(showSystemUi = true)
 @Composable
 private fun RoadmapsListPreview() {
+    val roadmaps = listOf(
+        Roadmap(
+            name = "Blockchain",
+            description = "Изучение технологий blockchain",
+            picture = "",
+            actionPoints = listOf(
+            )
+        ),
+        Roadmap(
+            name = "Плагин для хрома",
+            description = "Ну плагин и плагин",
+            picture = "",
+            actionPoints = listOf(
+            )
+        ),
+        Roadmap(
+            name = "Приложение с ChatGPT",
+            description = "Улучшение приложений за счет интеграции инструментов ChatGPT",
+            picture = "",
+            actionPoints = listOf(
+            )
+        )
+    )
+
     RoadmapTheme(darkTheme = false) {
         RoadmapsList(
-            roadmaps = DataProvider.roadmaps,
+            roadmaps = roadmaps,
             onRoadmapSelected = {}
         )
     }

@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.roadmap.data.DataProvider
 import com.example.roadmap.model.ActionPoint
 import com.example.roadmap.model.Roadmap
 import com.example.roadmap.ui.theme.RoadmapTheme
@@ -76,9 +75,30 @@ private fun ListItem(
 @Preview(showSystemUi = true)
 @Composable
 private fun RoadmapsListPreview() {
+    val roadmap = Roadmap(
+        name = "Android",
+        description = "Разработка мобильных приложений",
+        picture = "",
+        actionPoints = listOf(
+            ActionPoint(
+                name = "Гугл курс",
+                description = "Курс по разработке от гугл: ",
+                link = "https://developer.android.com/courses/android-basics-compose/course"
+            ),
+            ActionPoint(
+                name = "Хранение кредов",
+                description = "Научиться хранить чувствительную информацию в безопасном локальном хранилище"
+            ),
+            ActionPoint(
+                name = "Отправка пушей",
+                description = "Научиться отправлять пуши на телефон"
+            )
+        )
+    )
+
     RoadmapTheme(darkTheme = false) {
         ActionPointsList(
-            roadmap = DataProvider.roadmaps.first(),
+            roadmap = roadmap,
             doneActionPoints = emptySet(),
             onActionPointSelected = {}
         )

@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
@@ -22,7 +21,6 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.roadmap.R
-import com.example.roadmap.data.DataProvider
 import com.example.roadmap.model.ActionPoint
 import com.example.roadmap.ui.theme.RoadmapTheme
 
@@ -86,9 +84,15 @@ fun ActionPointsContent(
 @Preview(showSystemUi = true)
 @Composable
 private fun RoadmapsListPreview() {
+    val actionPoint = ActionPoint(
+        name = "Гугл курс",
+        description = "Курс по разработке от гугл: ",
+        link = "https://developer.android.com/courses/android-basics-compose/course"
+    )
+
     RoadmapTheme(darkTheme = true) {
         ActionPointsContent(
-            actionPoint = DataProvider.roadmaps.first().actionPoints.first(),
+            actionPoint = actionPoint,
             isActionPointDone = true,
             isDoneChanged = {}
         )
