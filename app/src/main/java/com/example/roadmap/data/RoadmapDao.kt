@@ -17,9 +17,12 @@ interface RoadmapDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertActionPoints(actionPoints: List<ActionPointEntity>)
 
+    @Query("SELECT * FROM roadmaps")
+    fun getRoadmaps(): Flow<List<RoadmapEntity>>
+
+    @Query("SELECT * FROM action_points")
+    fun getActionPoints(): Flow<List<ActionPointEntity>>
+
 //    @Insert
 //    suspend fun insertActionPoint(actionPoint: ActionPointEntity)
-//
-//    @Query("SELECT * FROM custom_action_points WHERE roadmap_id = :roadmapId")
-//    fun getByRoadmapId(roadmapId: Int): Flow<List<ActionPointEntity>>
 }

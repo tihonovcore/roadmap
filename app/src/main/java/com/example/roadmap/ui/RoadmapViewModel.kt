@@ -9,14 +9,15 @@ import com.example.roadmap.RoadmapApplication
 import com.example.roadmap.data.ActionPointStatusRepository
 import com.example.roadmap.data.RoadmapDao
 import com.example.roadmap.model.ActionPoint
-import com.example.roadmap.data.model.ActionPointEntity
 import com.example.roadmap.model.Roadmap
 import com.example.roadmap.model.RoadmapState
+import com.example.roadmap.model.fromEntity
 import com.example.roadmap.model.toEntity
 import com.example.roadmap.network.GithubService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -29,6 +30,22 @@ class RoadmapViewModel(
 
     private val _uiState = MutableStateFlow(RoadmapState())
     val uiState = _uiState.asStateFlow()
+
+    //TODO: для каждого экрана нужен свой view, который будет доставать нужные данные
+    val roadmaps = roadmapDao.getRoadmaps()
+        .combine(roadmapDao.getActionPoints()) { roadmapEntities, actionPointEntities ->
+            val byRoadmap = actionPointEntities.groupBy { it.roadmapId }
+            roadmapEntities.map { roadmap ->
+                val actionPoints = (byRoadmap[roadmap.id] ?: emptyList())
+                    .map { ap -> ap.fromEntity() }
+                roadmap.fromEntity(actionPoints)
+            }
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+            initialValue = emptyList()
+        )
 
     val finishedActionIdsState = actionPointStatusRepository.finishedActionIds().stateIn(
         scope = viewModelScope,

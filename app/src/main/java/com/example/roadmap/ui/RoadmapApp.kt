@@ -43,6 +43,8 @@ fun RoadmapApp() {
     val navController = rememberNavController()
     val viewModel = viewModel<RoadmapViewModel>(factory = RoadmapViewModel.Factory)
     val uiState by viewModel.uiState.collectAsState()
+
+    val roadmaps by viewModel.roadmaps.collectAsState()
     val finishedActionIds by viewModel.finishedActionIdsState.collectAsState()
 
     Scaffold(
@@ -62,7 +64,7 @@ fun RoadmapApp() {
         ) {
             composable(route = RoadmapScreen.ListRoadmaps.name) {
                 RoadmapsList(
-                    roadmaps = uiState.roadmaps,
+                    roadmaps = roadmaps,
                     onRoadmapSelected = { roadmap ->
                         viewModel.chooseRoadmap(roadmap)
                         navController.navigate(route = RoadmapScreen.ListActionPoints.name)
