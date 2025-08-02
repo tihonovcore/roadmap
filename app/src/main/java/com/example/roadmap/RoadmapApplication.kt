@@ -1,6 +1,7 @@
 package com.example.roadmap
 
 import android.app.Application
+import com.example.roadmap.data.RoadmapDatabase
 import com.example.roadmap.network.GithubService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
@@ -15,9 +16,11 @@ class RoadmapApplication : Application() {
         .build()
 
     lateinit var githubService: GithubService
+    lateinit var roadmapDatabase: RoadmapDatabase
 
     override fun onCreate() {
         super.onCreate()
         githubService = retrofit.create(GithubService::class.java)
+        roadmapDatabase = RoadmapDatabase.getDatabase(this)
     }
 }
