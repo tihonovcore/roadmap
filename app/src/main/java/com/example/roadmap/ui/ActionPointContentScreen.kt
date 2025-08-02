@@ -85,6 +85,7 @@ fun ActionPointsContent(
 @Composable
 private fun RoadmapsListPreview() {
     val actionPoint = ActionPoint(
+        id = 0,
         name = "Гугл курс",
         description = "Курс по разработке от гугл: ",
         link = "https://developer.android.com/courses/android-basics-compose/course"

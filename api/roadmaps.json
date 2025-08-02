@@ -55,7 +55,7 @@
     "picture": "",
     "actionPoints": [
       {
-        "id": 0,
+        "id": 8,
         "name": "Создать бот",
         "description": "Найти обучающие ресурсы"
       }
@@ -68,7 +68,7 @@
     "picture": "",
     "actionPoints": [
       {
-        "id": 0,
+        "id": 9,
         "name": "Разработка под unity",
         "description": "Изучить образовательные ресурсы от Unity: ",
         "link": "https://learn.unity.com/pathways"
@@ -82,22 +82,22 @@
     "picture": "",
     "actionPoints": [
       {
-        "id": 0,
+        "id": 10,
         "name": "Своя ОС",
         "description": "Создать свою мини-ОС"
       },
       {
-        "id": 1,
+        "id": 11,
         "name": "Свой планировщик",
         "description": "Разработать планировщик процессов для игрушечной ОС"
       },
       {
-        "id": 2,
+        "id": 12,
         "name": "Своя файловая система",
         "description": "Разработать файловую систему для игрушечной ОС"
       },
       {
-        "id": 3,
+        "id": 13,
         "name": "Модификация Linux",
         "description": "Сделать форк линукса, внести минимальные правки и собрать"
       }
@@ -110,12 +110,12 @@
     "picture": "",
     "actionPoints": [
       {
-        "id": 0,
+        "id": 14,
         "name": "Изучить книжку",
         "description": "Изучить книжку Programming Quantum Computers"
       },
       {
-        "id": 1,
+        "id": 15,
         "name": "Каты",
         "description": "Попробовать каты от Microsoft: ",
         "link": "https://quantum.microsoft.com/en-us/tools/quantum-katas"
@@ -129,7 +129,7 @@
     "picture": "",
     "actionPoints": [
       {
-        "id": 0,
+        "id": 16,
         "name": "React",
         "description": "Найти гайд на сайте реакта и пройти"
       }
@@ -142,12 +142,12 @@
     "picture": "",
     "actionPoints": [
       {
-        "id": 0,
+        "id": 17,
         "name": "Свой сайт http",
         "description": "Поднять свой сайт на Nginx"
       },
       {
-        "id": 1,
+        "id": 18,
         "name": "Свой сайт https",
         "description": "Настроить TLS"
       }
@@ -160,12 +160,12 @@
     "picture": "",
     "actionPoints": [
       {
-        "id": 0,
+        "id": 19,
         "name": "Markdown",
         "description": "Реализовать редактор Markdown"
       },
       {
-        "id": 1,
+        "id": 20,
         "name": "Железяки",
         "description": "Придумать как использовать железо"
       }

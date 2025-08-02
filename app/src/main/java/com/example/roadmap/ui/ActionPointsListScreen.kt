@@ -82,15 +82,18 @@ private fun RoadmapsListPreview() {
         picture = "",
         actionPoints = listOf(
             ActionPoint(
+                id = 0,
                 name = "Гугл курс",
                 description = "Курс по разработке от гугл: ",
                 link = "https://developer.android.com/courses/android-basics-compose/course"
             ),
             ActionPoint(
+                id = 1,
                 name = "Хранение кредов",
                 description = "Научиться хранить чувствительную информацию в безопасном локальном хранилище"
             ),
             ActionPoint(
+                id = 2,
                 name = "Отправка пушей",
                 description = "Научиться отправлять пуши на телефон"
             )
