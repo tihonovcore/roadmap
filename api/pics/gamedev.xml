@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <!-- Основа контроллера -->
+    <path
+        android:fillColor="#607D8B"
+        android:pathData="M10,28a8,8 0 0 1 8,-8h12a8,8 0 0 1 8,8v6a6,6 0 0 1 -6,6h-16a6,6 0 0 1 -6,-6z" />
+
+    <!-- Крестовина -->
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M18,26h-2v-2a1,1 0 0 0 -2,0v2h-2a1,1 0 0 0 0,2h2v2a1,1 0 0 0 2,0v-2h2a1,1 0 0 0 0,-2z" />
+
+    <!-- Кнопки -->
+    <path android:fillColor="#F44336" android:pathData="M32,24a1.5,1.5 0 1 1 0.01,0z" />
+    <path android:fillColor="#4CAF50" android:pathData="M36,28a1.5,1.5 0 1 1 0.01,0z" />
+    <path android:fillColor="#2196F3" android:pathData="M32,32a1.5,1.5 0 1 1 0.01,0z" />
+</vector>

@@ -3,7 +3,7 @@
     "id": 0,
     "name": "Android",
     "description": "Разработка мобильных приложений",
-    "picture": "",
+    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/android.xml",
     "actionPoints": [
       {
         "id": 0,
@@ -52,7 +52,7 @@
     "id": 1,
     "name": "Телеграм бот",
     "description": "Создание ботов для телеграма",
-    "picture": "",
+    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/telegram.xml",
     "actionPoints": [
       {
         "id": 8,
@@ -65,7 +65,7 @@
     "id": 2,
     "name": "Gamedev",
     "description": "Научиться делать компьютерные игры",
-    "picture": "",
+    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/gamedev.xml",
     "actionPoints": [
       {
         "id": 9,
@@ -79,7 +79,7 @@
     "id": 3,
     "name": "Операционные системы",
     "description": "Изучать как все работает на низком уровне",
-    "picture": "",
+    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/operation_systems.xml",
     "actionPoints": [
       {
         "id": 10,
@@ -107,7 +107,7 @@
     "id": 4,
     "name": "Quantum computing",
     "description": "Познакомиться с областью квантовых вычислений",
-    "picture": "",
+    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/quantum.xml",
     "actionPoints": [
       {
         "id": 14,
@@ -126,7 +126,7 @@
     "id": 5,
     "name": "Фронтенд",
     "description": "Разработка UI для веба",
-    "picture": "",
+    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/frontend.xml",
     "actionPoints": [
       {
         "id": 16,
@@ -139,7 +139,7 @@
     "id": 6,
     "name": "Бэкенд",
     "description": "Разработка серверных приложений",
-    "picture": "",
+    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/backend.xml",
     "actionPoints": [
       {
         "id": 17,

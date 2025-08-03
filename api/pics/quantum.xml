@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <!-- Орбиты -->
+    <path android:strokeColor="#7E57C2"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"
+        android:pathData="M24,24 m-15,0 a15,15 0 1,0 30,0 a15,8 0 1,0 -30,0" />
+    <path android:strokeColor="#7E57C2"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"
+        android:pathData="M24,24 m-15,0 a15,15 0 1,1 30,0 a15,8 0 1,1 -30,0" />
+
+    <!-- Центральный кубит -->
+    <path android:fillColor="#9575CD"
+        android:pathData="M22,22h4v4h-4z" />
+</vector>

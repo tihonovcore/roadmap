@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <!-- Голова -->
+    <path
+        android:fillColor="#A4C639"
+        android:pathData="M12,24a12,12 0 0 1 24,0v6a12,12 0 0 1 -24,0z" />
+
+    <!-- Глаза -->
+    <path android:fillColor="#FFFFFF" android:pathData="M18,26a1.5,1.5 0 1 1 0.01,0z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M30,26a1.5,1.5 0 1 1 0.01,0z" />
+
+    <!-- Антенны -->
+    <path
+        android:strokeWidth="2"
+        android:strokeColor="#A4C639"
+        android:strokeLineCap="round"
+        android:pathData="M17,16L14,10" />
+    <path
+        android:strokeWidth="2"
+        android:strokeColor="#A4C639"
+        android:strokeLineCap="round"
+        android:pathData="M31,16L34,10" />
+</vector>
