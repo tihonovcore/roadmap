@@ -53,7 +53,6 @@ enum class RoadmapScreen(val route: String) {
 }
 
 //TODO: refactor
-//TODO: картинки
 //TODO: шедульные нотификации
 
 @Composable

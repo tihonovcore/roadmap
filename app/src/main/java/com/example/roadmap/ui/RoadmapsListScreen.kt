@@ -1,6 +1,5 @@
 package com.example.roadmap.ui
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,11 +13,16 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.decode.SvgDecoder
+import coil.request.ImageRequest
 import com.example.roadmap.R
 import com.example.roadmap.data.model.RoadmapEntity
 import com.example.roadmap.ui.theme.RoadmapTheme
@@ -49,11 +53,16 @@ private fun ListItem(
     roadmap: RoadmapEntity
 ) {
     Row {
-        //TODO: use roadmap.picture
-        Image(
-            painter = painterResource(R.drawable.ic_launcher_background),
+        AsyncImage(
+            model = ImageRequest.Builder(context = LocalContext.current)
+                .decoderFactory(SvgDecoder.Factory())
+                .data(roadmap.picture)
+                .build(),
             contentDescription = null,
+            placeholder = painterResource(R.drawable.ic_launcher_background),
             modifier = Modifier
+                .height(100.dp)
+                .align(alignment = Alignment.CenterVertically)
                 .padding(10.dp)
                 .clip(CircleShape)
         )
