@@ -12,6 +12,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -53,13 +54,24 @@ enum class RoadmapScreen(val route: String) {
 }
 
 //TODO: refactor
-//TODO: шедульные нотификации
 
 @Composable
-fun RoadmapApp() {
+fun RoadmapApp(selectedActionPoint: Int = Int.MAX_VALUE) {
     val navController = rememberNavController()
 
+    LaunchedEffect(selectedActionPoint) {
+        if (selectedActionPoint != Int.MAX_VALUE) {
+            val targetRoute = RoadmapScreen.ActionPointScreen.withArgs(selectedActionPoint)
+            navController.navigate(targetRoute) {
+                popUpTo(navController.graph.startDestinationId) {
+                    inclusive = true
+                }
+            }
+        }
+    }
+
     val viewModel = viewModel<RoadmapViewModel>(factory = RoadmapViewModel.Factory)
+    //TODO: move from here, remove RoadmapViewModel
     val finishedActionIds by viewModel.finishedActionIdsState.collectAsState()
 
     var title by rememberSaveable { mutableStateOf(value = "") }

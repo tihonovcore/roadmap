@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.roadmap.ui.theme.RoadmapTheme
 import com.example.roadmap.ui.RoadmapApp
+import com.example.roadmap.worker.RemainderWorker
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +20,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             RoadmapTheme {
-                RoadmapApp()
+                val selectedActionPoint = intent.getIntExtra(
+                    RemainderWorker.SELECTED_ACTION_POINT,
+                    Int.MAX_VALUE
+                )
+                RoadmapApp(selectedActionPoint)
             }
         }
     }
