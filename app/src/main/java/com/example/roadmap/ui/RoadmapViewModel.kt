@@ -14,7 +14,6 @@ import com.example.roadmap.model.Roadmap
 import com.example.roadmap.model.RoadmapState
 import com.example.roadmap.model.fromEntity
 import com.example.roadmap.model.toEntity
-import com.example.roadmap.network.GithubService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,7 +23,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class RoadmapViewModel(
-    private val githubService: GithubService,
     private val roadmapDao: RoadmapDao,
     private val actionPointStatusRepository: ActionPointStatusRepository,
     private val customActionPointIdsRepository: CustomActionPointIdsRepository
@@ -54,20 +52,6 @@ class RoadmapViewModel(
         started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
         initialValue = emptySet()
     )
-
-    //TODO: loading/success/fail
-    init {
-        viewModelScope.launch {
-            val roadmaps = githubService.getRoadmaps()
-
-            roadmapDao.insertRoadmaps(roadmaps.map { it.toEntity() })
-            roadmapDao.insertActionPoints(
-                roadmaps.flatMap { roadmap ->
-                    roadmap.actionPoints.map { it.toEntity(roadmap.id) }
-                }
-            )
-        }
-    }
 
     fun chooseRoadmap(roadmap: Roadmap) {
         _uiState.update { old ->
@@ -102,7 +86,6 @@ class RoadmapViewModel(
             initializer {
                 val application = this[APPLICATION_KEY] as RoadmapApplication
                 RoadmapViewModel(
-                    githubService = application.githubService,
                     roadmapDao = application.roadmapDatabase.createDao(),
                     actionPointStatusRepository = application.actionPointStatusRepository,
                     customActionPointIdsRepository = application.customActionPointIdsRepository
