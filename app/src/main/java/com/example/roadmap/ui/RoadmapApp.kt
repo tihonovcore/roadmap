@@ -23,19 +23,35 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.roadmap.R
 import com.example.roadmap.model.RoadmapState
 import com.example.roadmap.ui.theme.RoadmapTheme
 
-enum class RoadmapScreen {
-    ListRoadmaps,
-    ListActionPoints,
-    ActionPointScreen,
-    CreateActionPointScreen,
+enum class RoadmapScreen(val route: String) {
+    ListRoadmaps(route = "ListRoadmaps"),
+    ListActionPoints(route = "ListActionPoints/{roadmapId}"),
+    ActionPointScreen(route = "ActionPointScreen"),
+    CreateActionPointScreen(route = "CreateActionPointScreen");
+
+    fun withArgs(vararg args: Any): String {
+        var routeWithArgs = route
+        args.forEach { arg ->
+            routeWithArgs = routeWithArgs.replaceFirst(Regex("""\{.*?\}"""), arg.toString())
+        }
+        return routeWithArgs
+    }
+
+    companion object {
+        fun parse(route: String): RoadmapScreen {
+            return valueOf(route.split("/")[0])
+        }
+    }
 }
 
 @Composable
@@ -59,31 +75,34 @@ fun RoadmapApp() {
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = RoadmapScreen.ListRoadmaps.name,
+            startDestination = RoadmapScreen.ListRoadmaps.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(route = RoadmapScreen.ListRoadmaps.name) {
+            composable(route = RoadmapScreen.ListRoadmaps.route) {
                 RoadmapsList(
                     roadmaps = roadmaps,
                     onRoadmapSelected = { roadmap ->
                         viewModel.chooseRoadmap(roadmap)
-                        navController.navigate(route = RoadmapScreen.ListActionPoints.name)
+                        navController.navigate(route = RoadmapScreen.ListActionPoints.withArgs(roadmap.id))
                     }
                 )
             }
 
-            composable(route = RoadmapScreen.ListActionPoints.name) {
+            composable(
+                route = RoadmapScreen.ListActionPoints.route,
+                arguments = listOf(navArgument("roadmapId") { type = NavType.IntType })
+            ) {
                 ActionPointsList(
                     roadmap = uiState.selectedRoadmap!!,
                     finishedActionIds = finishedActionIds,
                     onActionPointSelected = { actionPoint ->
                         viewModel.chooseActionPoint(actionPoint)
-                        navController.navigate(route = RoadmapScreen.ActionPointScreen.name)
+                        navController.navigate(route = RoadmapScreen.ActionPointScreen.route)
                     }
                 )
             }
 
-            composable(route = RoadmapScreen.ActionPointScreen.name) {
+            composable(route = RoadmapScreen.ActionPointScreen.route) {
                 val selectedActionPoint = uiState.selectedActionPoint!!
                 ActionPointsContent(
                     actionPoint = selectedActionPoint,
@@ -92,7 +111,7 @@ fun RoadmapApp() {
                 )
             }
 
-            composable(route = RoadmapScreen.CreateActionPointScreen.name) {
+            composable(route = RoadmapScreen.CreateActionPointScreen.route) {
                 CreateActionPoint(
                     onCreateActionPoint = { name, description ->
                         viewModel.addActionPointToCurrentRoadmap(name, description)
@@ -109,8 +128,8 @@ private fun RoadmapTopBar(
     navController: NavController, uiState: RoadmapState, finishedActionIds: Set<Int>
 ) {
     val backStackEntry by navController.currentBackStackEntryAsState()
-    val currentScreen = RoadmapScreen.valueOf(
-        backStackEntry?.destination?.route ?: RoadmapScreen.ListRoadmaps.name
+    val currentScreen = RoadmapScreen.parse(
+        backStackEntry?.destination?.route ?: RoadmapScreen.ListRoadmaps.route
     )
 
     @OptIn(ExperimentalMaterial3Api::class)
