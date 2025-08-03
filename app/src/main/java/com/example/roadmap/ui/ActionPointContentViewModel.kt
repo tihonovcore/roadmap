@@ -31,6 +31,12 @@ class ActionPointContentViewModel(
             initialValue = ActionPoint(id = 0, name = "", description = "")
         )
 
+    val finishedActionIdsState = actionPointStatusRepository.finishedActionIds().stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+        initialValue = emptySet()
+    )
+
     fun changeDoneStatus(selectedActionPoint: ActionPoint) {
         viewModelScope.launch {
             actionPointStatusRepository.changeDoneStatusFor(selectedActionPoint)

@@ -28,13 +28,3 @@ fun Roadmap.toEntity(): RoadmapEntity {
         picture = this.picture
     )
 }
-
-fun RoadmapEntity.fromEntity(actionPoints: List<ActionPoint>): Roadmap {
-    return Roadmap(
-        id = this.id,
-        name = this.name,
-        description = this.description,
-        picture = this.picture,
-        actionPoints = actionPoints
-    )
-}

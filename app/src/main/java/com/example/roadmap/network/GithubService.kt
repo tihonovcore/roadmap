@@ -5,9 +5,6 @@ import retrofit2.http.GET
 
 interface GithubService {
 
-    @GET("tihonovcore/roadmap/refs/heads/master/gradle.properties")
-    suspend fun getGradleProps(): String
-
     @GET("/tihonovcore/roadmap/refs/heads/master/api/roadmaps.json")
     suspend fun getRoadmaps(): List<Roadmap>
 }

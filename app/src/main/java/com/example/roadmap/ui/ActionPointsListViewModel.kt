@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.roadmap.RoadmapApplication
+import com.example.roadmap.data.ActionPointStatusRepository
 import com.example.roadmap.data.RoadmapDao
 import com.example.roadmap.model.fromEntity
 import kotlinx.coroutines.flow.SharingStarted
@@ -15,7 +16,8 @@ import kotlinx.coroutines.flow.stateIn
 
 class ActionPointsListViewModel(
     private val selectedRoadmapId: Int,
-    private val roadmapDao: RoadmapDao
+    private val roadmapDao: RoadmapDao,
+    private val actionPointStatusRepository: ActionPointStatusRepository,
 ) : ViewModel() {
 
     val roadmapName = roadmapDao.getRoadmap(roadmapId = selectedRoadmapId)
@@ -34,6 +36,12 @@ class ActionPointsListViewModel(
             initialValue = listOf()
         )
 
+    val finishedActionIdsState = actionPointStatusRepository.finishedActionIds().stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+        initialValue = emptySet()
+    )
+
     companion object {
         val Factory = viewModelFactory {
             initializer {
@@ -43,7 +51,8 @@ class ActionPointsListViewModel(
                 val application = this[APPLICATION_KEY] as RoadmapApplication
                 ActionPointsListViewModel(
                     selectedRoadmapId = selectedRoadmapId,
-                    roadmapDao = application.roadmapDatabase.createDao()
+                    roadmapDao = application.roadmapDatabase.createDao(),
+                    actionPointStatusRepository = application.actionPointStatusRepository,
                 )
             }
         }

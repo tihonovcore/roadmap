@@ -30,6 +30,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.roadmap.R
+import com.example.roadmap.model.ReactionToRemainder
 import com.example.roadmap.ui.theme.RoadmapTheme
 
 enum class RoadmapScreen(val route: String) {
@@ -53,26 +54,18 @@ enum class RoadmapScreen(val route: String) {
     }
 }
 
-//TODO: refactor
-
 @Composable
-fun RoadmapApp(selectedActionPoint: Int = Int.MAX_VALUE) {
+fun RoadmapApp(
+    reaction: ReactionToRemainder = ReactionToRemainder()
+) {
     val navController = rememberNavController()
 
-    LaunchedEffect(selectedActionPoint) {
-        if (selectedActionPoint != Int.MAX_VALUE) {
-            val targetRoute = RoadmapScreen.ActionPointScreen.withArgs(selectedActionPoint)
-            navController.navigate(targetRoute) {
-                popUpTo(navController.graph.startDestinationId) {
-                    inclusive = true
-                }
-            }
+    LaunchedEffect(reaction) {
+        if (reaction.isPresent()) {
+            val targetRoute = RoadmapScreen.ActionPointScreen.withArgs(reaction.selectedActionPoint)
+            navController.navigate(targetRoute)
         }
     }
-
-    val viewModel = viewModel<RoadmapViewModel>(factory = RoadmapViewModel.Factory)
-    //TODO: move from here, remove RoadmapViewModel
-    val finishedActionIds by viewModel.finishedActionIdsState.collectAsState()
 
     var title by rememberSaveable { mutableStateOf(value = "") }
 
@@ -116,6 +109,7 @@ fun RoadmapApp(selectedActionPoint: Int = Int.MAX_VALUE) {
 
                 val roadmapName by localViewModel.roadmapName.collectAsState()
                 val actionPoints by localViewModel.actionPoints.collectAsState()
+                val finishedActionIds by localViewModel.finishedActionIdsState.collectAsState()
 
                 val doneActionPointsCount = actionPoints.count { it.id in finishedActionIds }
                 title = "$roadmapName $doneActionPointsCount/${actionPoints.size}"
@@ -137,6 +131,7 @@ fun RoadmapApp(selectedActionPoint: Int = Int.MAX_VALUE) {
                     factory = ActionPointContentViewModel.Factory
                 )
                 val selectedActionPoint by localViewModel.selectedActionPoint.collectAsState()
+                val finishedActionIds by localViewModel.finishedActionIdsState.collectAsState()
 
                 title = selectedActionPoint.name
 
