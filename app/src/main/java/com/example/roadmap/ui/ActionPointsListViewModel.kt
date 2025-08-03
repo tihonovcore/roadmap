@@ -18,6 +18,14 @@ class ActionPointsListViewModel(
     private val roadmapDao: RoadmapDao
 ) : ViewModel() {
 
+    val roadmapName = roadmapDao.getRoadmap(roadmapId = selectedRoadmapId)
+        .map { roadmap -> roadmap.name }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+            initialValue = ""
+        )
+
     val actionPoints = roadmapDao.getActionPointsByRoadmapId(selectedRoadmapId)
         .map { list -> list.map { it.fromEntity() } }
         .stateIn(
