@@ -34,7 +34,7 @@ import com.example.roadmap.ui.theme.RoadmapTheme
 enum class RoadmapScreen(val route: String) {
     ListRoadmaps(route = "ListRoadmaps"),
     ListActionPoints(route = "ListActionPoints/{roadmapId}"),
-    ActionPointScreen(route = "ActionPointScreen"),
+    ActionPointScreen(route = "ActionPointScreen/{actionPointId}"),
     CreateActionPointScreen(route = "CreateActionPointScreen");
 
     fun withArgs(vararg args: Any): String {
@@ -55,9 +55,8 @@ enum class RoadmapScreen(val route: String) {
 @Composable
 fun RoadmapApp() {
     val navController = rememberNavController()
-    val viewModel = viewModel<RoadmapViewModel>(factory = RoadmapViewModel.Factory)
-    val uiState by viewModel.uiState.collectAsState()
 
+    val viewModel = viewModel<RoadmapViewModel>(factory = RoadmapViewModel.Factory)
     val finishedActionIds by viewModel.finishedActionIdsState.collectAsState()
 
     var title by rememberSaveable { mutableStateOf(value = "") }
@@ -110,19 +109,26 @@ fun RoadmapApp() {
                     actionPoints = actionPoints,
                     finishedActionIds = finishedActionIds,
                     onActionPointSelected = { actionPoint ->
-                        viewModel.chooseActionPoint(actionPoint)
-                        navController.navigate(route = RoadmapScreen.ActionPointScreen.route)
+                        navController.navigate(route = RoadmapScreen.ActionPointScreen.withArgs(actionPoint.id))
                     }
                 )
             }
 
-            composable(route = RoadmapScreen.ActionPointScreen.route) {
-                val selectedActionPoint = uiState.selectedActionPoint!!
+            composable(
+                route = RoadmapScreen.ActionPointScreen.route,
+                arguments = listOf(navArgument("actionPointId") { type = NavType.IntType })
+            ) {
+                val localViewModel: ActionPointContentViewModel = viewModel(
+                    factory = ActionPointContentViewModel.Factory
+                )
+                val selectedActionPoint by localViewModel.selectedActionPoint.collectAsState()
+
                 title = selectedActionPoint.name
+
                 ActionPointsContent(
                     actionPoint = selectedActionPoint,
                     isActionPointDone = selectedActionPoint.id in finishedActionIds,
-                    isDoneChanged = { viewModel.changeDoneStatus(selectedActionPoint) }
+                    isDoneChanged = { localViewModel.changeDoneStatus(selectedActionPoint) }
                 )
             }
 

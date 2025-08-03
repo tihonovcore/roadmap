@@ -29,6 +29,9 @@ interface RoadmapDao {
     @Query("SELECT * FROM action_points WHERE roadmap_id = :roadmapId")
     fun getActionPointsByRoadmapId(roadmapId: Int): Flow<List<ActionPointEntity>>
 
+    @Query("SELECT * FROM action_points WHERE id = :id")
+    fun getActionPointById(id: Int): Flow<ActionPointEntity>
+
     @Insert
     suspend fun insertActionPoint(actionPoint: ActionPointEntity)
 }
