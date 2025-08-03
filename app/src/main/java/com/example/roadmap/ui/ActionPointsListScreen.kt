@@ -17,21 +17,20 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.roadmap.model.ActionPoint
-import com.example.roadmap.model.Roadmap
 import com.example.roadmap.ui.theme.RoadmapTheme
 
 //TODO: кнопка в шапке добавить новый, переход на новый скрин
 
 @Composable
 fun ActionPointsList(
-    roadmap: Roadmap,
+    actionPoints: List<ActionPoint>,
     finishedActionIds: Set<Int>,
     onActionPointSelected: (ActionPoint) -> Unit
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
-        items(roadmap.actionPoints) { actionPoint ->
+        items(actionPoints) { actionPoint ->
             Card(
                 onClick = { onActionPointSelected(actionPoint) },
                 modifier = Modifier
@@ -75,34 +74,28 @@ private fun ListItem(
 @Preview(showSystemUi = true)
 @Composable
 private fun RoadmapsListPreview() {
-    val roadmap = Roadmap(
-        id = 0,
-        name = "Android",
-        description = "Разработка мобильных приложений",
-        picture = "",
-        actionPoints = listOf(
-            ActionPoint(
-                id = 0,
-                name = "Гугл курс",
-                description = "Курс по разработке от гугл: ",
-                link = "https://developer.android.com/courses/android-basics-compose/course"
-            ),
-            ActionPoint(
-                id = 1,
-                name = "Хранение кредов",
-                description = "Научиться хранить чувствительную информацию в безопасном локальном хранилище"
-            ),
-            ActionPoint(
-                id = 2,
-                name = "Отправка пушей",
-                description = "Научиться отправлять пуши на телефон"
-            )
+    val actionPoints = listOf(
+        ActionPoint(
+            id = 0,
+            name = "Гугл курс",
+            description = "Курс по разработке от гугл: ",
+            link = "https://developer.android.com/courses/android-basics-compose/course"
+        ),
+        ActionPoint(
+            id = 1,
+            name = "Хранение кредов",
+            description = "Научиться хранить чувствительную информацию в безопасном локальном хранилище"
+        ),
+        ActionPoint(
+            id = 2,
+            name = "Отправка пушей",
+            description = "Научиться отправлять пуши на телефон"
         )
     )
 
     RoadmapTheme(darkTheme = false) {
         ActionPointsList(
-            roadmap = roadmap,
+            actionPoints = actionPoints,
             finishedActionIds = emptySet(),
             onActionPointSelected = {}
         )

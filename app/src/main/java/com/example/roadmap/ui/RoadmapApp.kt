@@ -92,8 +92,13 @@ fun RoadmapApp() {
                 route = RoadmapScreen.ListActionPoints.route,
                 arguments = listOf(navArgument("roadmapId") { type = NavType.IntType })
             ) {
+                val localViewModel: ActionPointsListViewModel = viewModel(
+                    factory = ActionPointsListViewModel.Factory
+                )
+                val actionPoints by localViewModel.actionPoints.collectAsState()
+
                 ActionPointsList(
-                    roadmap = uiState.selectedRoadmap!!,
+                    actionPoints = actionPoints,
                     finishedActionIds = finishedActionIds,
                     onActionPointSelected = { actionPoint ->
                         viewModel.chooseActionPoint(actionPoint)
