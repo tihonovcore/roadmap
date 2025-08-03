@@ -53,12 +53,6 @@ class RoadmapViewModel(
         initialValue = emptySet()
     )
 
-    fun chooseRoadmap(roadmap: Roadmap) {
-        _uiState.update { old ->
-            old.copy(selectedRoadmap = roadmap)
-        }
-    }
-
     fun chooseActionPoint(actionPoint: ActionPoint) {
         _uiState.update { old ->
             old.copy(selectedActionPoint = actionPoint)
@@ -71,13 +65,12 @@ class RoadmapViewModel(
         }
     }
 
-    fun addActionPointToCurrentRoadmap(name: String, description: String) {
+    fun addActionPointToCurrentRoadmap(roadmapId: Int, name: String, description: String) {
         viewModelScope.launch {
             val id = customActionPointIdsRepository.generateId()
             val actionPoint = ActionPoint(id = id, name = name, description = description)
-            val currentRoadmap = _uiState.value.selectedRoadmap!!
 
-            roadmapDao.insertActionPoint(actionPoint.toEntity(currentRoadmap.id))
+            roadmapDao.insertActionPoint(actionPoint.toEntity(roadmapId))
         }
     }
 

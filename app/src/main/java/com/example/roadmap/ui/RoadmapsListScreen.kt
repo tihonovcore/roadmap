@@ -20,13 +20,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.roadmap.R
-import com.example.roadmap.model.Roadmap
+import com.example.roadmap.data.model.RoadmapEntity
 import com.example.roadmap.ui.theme.RoadmapTheme
 
 @Composable
 fun RoadmapsList(
-    roadmaps: List<Roadmap>,
-    onRoadmapSelected: (Roadmap) -> Unit
+    roadmaps: List<RoadmapEntity>,
+    onRoadmapSelected: (RoadmapEntity) -> Unit
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
@@ -46,7 +46,7 @@ fun RoadmapsList(
 
 @Composable
 private fun ListItem(
-    roadmap: Roadmap
+    roadmap: RoadmapEntity
 ) {
     Row {
         //TODO: use roadmap.picture
@@ -77,26 +77,23 @@ private fun ListItem(
 @Composable
 private fun RoadmapsListPreview() {
     val roadmaps = listOf(
-        Roadmap(
+        RoadmapEntity(
             id = 0,
             name = "Blockchain",
             description = "Изучение технологий blockchain",
             picture = "",
-            actionPoints = listOf()
         ),
-        Roadmap(
+        RoadmapEntity(
             id = 1,
             name = "Плагин для хрома",
             description = "Ну плагин и плагин",
             picture = "",
-            actionPoints = listOf()
         ),
-        Roadmap(
+        RoadmapEntity(
             id = 2,
             name = "Приложение с ChatGPT",
             description = "Улучшение приложений за счет интеграции инструментов ChatGPT",
             picture = "",
-            actionPoints = listOf()
         )
     )
 

@@ -58,7 +58,6 @@ fun RoadmapApp() {
     val viewModel = viewModel<RoadmapViewModel>(factory = RoadmapViewModel.Factory)
     val uiState by viewModel.uiState.collectAsState()
 
-    val roadmaps by viewModel.roadmaps.collectAsState()
     val finishedActionIds by viewModel.finishedActionIdsState.collectAsState()
 
     var title by rememberSaveable { mutableStateOf(value = "") }
@@ -78,11 +77,16 @@ fun RoadmapApp() {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(route = RoadmapScreen.ListRoadmaps.route) {
+                val localViewModel: RoadmapsListViewModel = viewModel(
+                    factory = RoadmapsListViewModel.Factory
+                )
+                val roadmaps by localViewModel.roadmaps.collectAsState()
+
                 title = stringResource(R.string.roadmap)
+
                 RoadmapsList(
                     roadmaps = roadmaps,
                     onRoadmapSelected = { roadmap ->
-                        viewModel.chooseRoadmap(roadmap)
                         navController.navigate(route = RoadmapScreen.ListActionPoints.withArgs(roadmap.id))
                     }
                 )
@@ -124,9 +128,10 @@ fun RoadmapApp() {
 
             composable(route = RoadmapScreen.CreateActionPointScreen.route) {
                 title = stringResource(R.string.add_action_point)
+                val roadmapId = 0 //TODO: load from args
                 CreateActionPoint(
                     onCreateActionPoint = { name, description ->
-                        viewModel.addActionPointToCurrentRoadmap(name, description)
+                        viewModel.addActionPointToCurrentRoadmap(roadmapId, name, description)
                         navController.navigateUp()
                     }
                 )

@@ -19,8 +19,6 @@ import androidx.compose.ui.unit.dp
 import com.example.roadmap.model.ActionPoint
 import com.example.roadmap.ui.theme.RoadmapTheme
 
-//TODO: кнопка в шапке добавить новый, переход на новый скрин
-
 @Composable
 fun ActionPointsList(
     actionPoints: List<ActionPoint>,
