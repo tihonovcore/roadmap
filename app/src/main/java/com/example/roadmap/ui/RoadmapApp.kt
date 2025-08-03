@@ -35,7 +35,7 @@ enum class RoadmapScreen(val route: String) {
     ListRoadmaps(route = "ListRoadmaps"),
     ListActionPoints(route = "ListActionPoints/{roadmapId}"),
     ActionPointScreen(route = "ActionPointScreen/{actionPointId}"),
-    CreateActionPointScreen(route = "CreateActionPointScreen");
+    CreateActionPointScreen(route = "CreateActionPointScreen/{roadmapId}");
 
     fun withArgs(vararg args: Any): String {
         var routeWithArgs = route
@@ -51,6 +51,10 @@ enum class RoadmapScreen(val route: String) {
         }
     }
 }
+
+//TODO: refactor
+//TODO: картинки
+//TODO: шедульные нотификации
 
 @Composable
 fun RoadmapApp() {
@@ -132,12 +136,19 @@ fun RoadmapApp() {
                 )
             }
 
-            composable(route = RoadmapScreen.CreateActionPointScreen.route) {
+            composable(
+                route = RoadmapScreen.CreateActionPointScreen.route,
+                arguments = listOf(navArgument("roadmapId") { type = NavType.IntType })
+            ) {
+                val localViewMode: CreateActionPointViewModel = viewModel(
+                    factory = CreateActionPointViewModel.Factory
+                )
+
                 title = stringResource(R.string.add_action_point)
-                val roadmapId = 0 //TODO: load from args
+
                 CreateActionPoint(
                     onCreateActionPoint = { name, description ->
-                        viewModel.addActionPointToCurrentRoadmap(roadmapId, name, description)
+                        localViewMode.addActionPointToCurrentRoadmap(name, description)
                         navController.navigateUp()
                     }
                 )
@@ -172,7 +183,8 @@ private fun RoadmapTopBar(
             if (currentScreen == RoadmapScreen.ListActionPoints) {
                 IconButton(
                     onClick = {
-                        navController.navigate(route = RoadmapScreen.CreateActionPointScreen.name)
+                        val roadmapId = backStackEntry?.arguments?.getInt("roadmapId") ?: error("No roadmapId")
+                        navController.navigate(route = RoadmapScreen.CreateActionPointScreen.withArgs(roadmapId))
                     }
                 ) {
                     Icon(
