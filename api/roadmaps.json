@@ -3,7 +3,7 @@
     "id": 0,
     "name": "Android",
     "description": "Разработка мобильных приложений",
-    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/android.svg",
+    "picture": "https://raw.githubusercontent.com/tihonovcore/roadmap/refs/heads/master/api/pics/android.svg",
     "actionPoints": [
       {
         "id": 0,
@@ -52,7 +52,7 @@
     "id": 1,
     "name": "Телеграм бот",
     "description": "Создание ботов для телеграма",
-    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/telegram.svg",
+    "picture": "https://raw.githubusercontent.com/tihonovcore/roadmap/refs/heads/master/api/pics/telegram.svg",
     "actionPoints": [
       {
         "id": 8,
@@ -65,7 +65,7 @@
     "id": 2,
     "name": "Gamedev",
     "description": "Научиться делать компьютерные игры",
-    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/gamedev.svg",
+    "picture": "https://raw.githubusercontent.com/tihonovcore/roadmap/refs/heads/master/api/pics/gamedev.svg",
     "actionPoints": [
       {
         "id": 9,
@@ -79,7 +79,7 @@
     "id": 3,
     "name": "Операционные системы",
     "description": "Изучать как все работает на низком уровне",
-    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/operation_systems.svg",
+    "picture": "https://raw.githubusercontent.com/tihonovcore/roadmap/refs/heads/master/api/pics/operation_systems.svg",
     "actionPoints": [
       {
         "id": 10,
@@ -107,7 +107,7 @@
     "id": 4,
     "name": "Quantum computing",
     "description": "Познакомиться с областью квантовых вычислений",
-    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/quantum.svg",
+    "picture": "https://raw.githubusercontent.com/tihonovcore/roadmap/refs/heads/master/api/pics/quantum.svg",
     "actionPoints": [
       {
         "id": 14,
@@ -126,7 +126,7 @@
     "id": 5,
     "name": "Фронтенд",
     "description": "Разработка UI для веба",
-    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/frontend.svg",
+    "picture": "https://raw.githubusercontent.com/tihonovcore/roadmap/refs/heads/master/api/pics/frontend.svg",
     "actionPoints": [
       {
         "id": 16,
@@ -139,7 +139,7 @@
     "id": 6,
     "name": "Бэкенд",
     "description": "Разработка серверных приложений",
-    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/backend.svg",
+    "picture": "https://raw.githubusercontent.com/tihonovcore/roadmap/refs/heads/master/api/pics/backend.svg",
     "actionPoints": [
       {
         "id": 17,
@@ -157,7 +157,7 @@
     "id": 7,
     "name": "Desktop",
     "description": "Разработка приложений для ПК",
-    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/desktop.svg",
+    "picture": "https://raw.githubusercontent.com/tihonovcore/roadmap/refs/heads/master/api/pics/desktop.svg",
     "actionPoints": [
       {
         "id": 19,
@@ -175,35 +175,35 @@
     "id": 8,
     "name": "ML",
     "description": "Эксперименты в области машинного обучения",
-    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/ml.svg",
+    "picture": "https://raw.githubusercontent.com/tihonovcore/roadmap/refs/heads/master/api/pics/ml.svg",
     "actionPoints": []
   },
   {
     "id": 9,
     "name": "Embedded",
     "description": "Разработка для ардуино и прочих холодильников",
-    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/embedded.svg",
+    "picture": "https://raw.githubusercontent.com/tihonovcore/roadmap/refs/heads/master/api/pics/embedded.svg",
     "actionPoints": []
   },
   {
     "id": 10,
     "name": "Blockchain",
     "description": "Изучение технологий blockchain",
-    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/blockchain.svg",
+    "picture": "https://raw.githubusercontent.com/tihonovcore/roadmap/refs/heads/master/api/pics/blockchain.svg",
     "actionPoints": []
   },
   {
     "id": 11,
     "name": "Плагин для хрома",
     "description": "Ну плагин и плагин",
-    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/chrome.svg",
+    "picture": "https://raw.githubusercontent.com/tihonovcore/roadmap/refs/heads/master/api/pics/chrome.svg",
     "actionPoints": []
   },
   {
     "id":  12,
     "name": "Приложение с ChatGPT",
     "description": "Улучшение приложений за счет интеграции инструментов ChatGPT",
-    "picture": "/tihonovcore/roadmap/refs/heads/master/api/pics/chatgpt.svg",
+    "picture": "https://raw.githubusercontent.com/tihonovcore/roadmap/refs/heads/master/api/pics/chatgpt.svg",
     "actionPoints": []
   }
 ]
