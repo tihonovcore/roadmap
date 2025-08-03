@@ -1,7 +1,10 @@
 package com.example.roadmap
 
 import android.app.Application
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
+import android.os.Build
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -14,10 +17,12 @@ import com.example.roadmap.data.CustomActionPointIdsRepository
 import com.example.roadmap.data.RoadmapDatabase
 import com.example.roadmap.network.GithubService
 import com.example.roadmap.worker.LoaderWorker
+import com.example.roadmap.worker.RemainderWorker
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
+import java.time.Duration
 
 class RoadmapApplication : Application() {
 
@@ -43,6 +48,7 @@ class RoadmapApplication : Application() {
         customActionPointIdsRepository = CustomActionPointIdsRepository(dataStore)
 
         scheduleRoadmapsLoading()
+        scheduleRemainder()
     }
 
     private fun scheduleRoadmapsLoading() {
@@ -53,5 +59,34 @@ class RoadmapApplication : Application() {
             .setConstraints(constraints)
             .build()
         WorkManager.getInstance(context = this).enqueue(loadRoadmaps)
+    }
+
+    private fun scheduleRemainder() {
+        createNotificationChannel()
+
+        val loadRoadmaps = OneTimeWorkRequestBuilder<RemainderWorker>()
+            //NOTE: this delay is used for demonstration purpose
+            .setInitialDelay(Duration.ofSeconds(15))
+            .build()
+        WorkManager.getInstance(context = this).enqueue(loadRoadmaps)
+    }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                NOTIFICATION_CHANNEL_ID,
+                getString(R.string.study_remainder),
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                description = getString(R.string.study_remainder_channel)
+            }
+
+            val manager = getSystemService(NotificationManager::class.java)
+            manager.createNotificationChannel(channel)
+        }
+    }
+
+    companion object {
+        const val NOTIFICATION_CHANNEL_ID: String = "reminder"
     }
 }

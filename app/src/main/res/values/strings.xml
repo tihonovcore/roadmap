@@ -7,4 +7,6 @@
     <string name="create_action_point">Создать активность</string>
     <string name="action_point_name">Название активности</string>
     <string name="action_point_description">Описание действия</string>
+    <string name="study_remainder">Напоминания поучиться</string>
+    <string name="study_remainder_channel">Канал для напоминаний об обучении</string>
 </resources>
