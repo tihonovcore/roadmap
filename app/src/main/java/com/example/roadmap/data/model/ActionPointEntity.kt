@@ -20,6 +20,7 @@ data class ActionPointEntity(
     val id: Int = 0,
     val name: String,
     val description: String,
+    val link: String? = null,
     @ColumnInfo(name = "roadmap_id")
     val roadmapId: Int,
 )

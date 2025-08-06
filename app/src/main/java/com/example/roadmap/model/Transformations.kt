@@ -8,6 +8,7 @@ fun ActionPoint.toEntity(roadmapId: Int): ActionPointEntity {
         id = this.id,
         name = this.name,
         description = this.description,
+        link = this.link,
         roadmapId = roadmapId
     )
 }
@@ -17,6 +18,7 @@ fun ActionPointEntity.fromEntity(): ActionPoint {
         id = this.id,
         name = this.name,
         description = this.description,
+        link = this.link
     )
 }
 
