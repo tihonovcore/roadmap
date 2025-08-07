@@ -1,5 +1,7 @@
 package com.example.roadmap.ui
 
+import android.graphics.RenderEffect
+import android.graphics.Shader
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,6 +18,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.asComposeRenderEffect
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,7 +34,8 @@ import com.example.roadmap.ui.theme.RoadmapTheme
 @Composable
 fun RoadmapsList(
     roadmaps: List<RoadmapEntity>,
-    onRoadmapSelected: (RoadmapEntity) -> Unit
+    onRoadmapSelected: (RoadmapEntity) -> Unit,
+    blurText: Boolean = false
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
@@ -42,7 +47,7 @@ fun RoadmapsList(
                     .fillMaxSize()
                     .padding(8.dp)
             ) {
-                ListItem(roadmap)
+                ListItem(roadmap, blurText)
             }
         }
     }
@@ -50,7 +55,8 @@ fun RoadmapsList(
 
 @Composable
 private fun ListItem(
-    roadmap: RoadmapEntity
+    roadmap: RoadmapEntity,
+    blurText: Boolean = false,
 ) {
     Row {
         AsyncImage(
@@ -72,14 +78,22 @@ private fun ListItem(
             Text(
                 text = roadmap.name,
                 style = MaterialTheme.typography.titleLarge,
+                modifier = if (blurText) Modifier else blurModifier(x = 30F, y = 20F)
             )
             Spacer(Modifier.height(5.dp))
             Text(
                 text = roadmap.description,
                 style = MaterialTheme.typography.bodyMedium,
+                modifier = if (blurText) Modifier else blurModifier(x = 30F, y = 10F)
             )
         }
     }
+}
+
+private fun blurModifier(x: Float, y: Float) = Modifier.graphicsLayer {
+    renderEffect = RenderEffect
+        .createBlurEffect(x, y, Shader.TileMode.CLAMP)
+        .asComposeRenderEffect()
 }
 
 @Preview(showSystemUi = true)

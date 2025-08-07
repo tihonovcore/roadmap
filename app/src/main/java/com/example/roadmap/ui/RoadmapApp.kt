@@ -88,14 +88,17 @@ fun RoadmapApp(
                     factory = RoadmapsListViewModel.Factory
                 )
                 val roadmaps by localViewModel.roadmaps.collectAsState()
+                val blurText by localViewModel.blurText.collectAsState()
+                val z by localViewModel.zz.collectAsState()
 
-                title = stringResource(R.string.roadmap)
+                title = stringResource(R.string.roadmap) + " " + z
 
                 RoadmapsList(
                     roadmaps = roadmaps,
                     onRoadmapSelected = { roadmap ->
                         navController.navigate(route = RoadmapScreen.ListActionPoints.withArgs(roadmap.id))
-                    }
+                    },
+                    blurText = blurText,
                 )
             }
 
