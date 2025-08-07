@@ -89,9 +89,8 @@ fun RoadmapApp(
                 )
                 val roadmaps by localViewModel.roadmaps.collectAsState()
                 val blurText by localViewModel.blurText.collectAsState()
-                val z by localViewModel.zz.collectAsState()
 
-                title = stringResource(R.string.roadmap) + " " + z
+                title = stringResource(R.string.roadmap)
 
                 RoadmapsList(
                     roadmaps = roadmaps,
